@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+#logo, .searchbar, p {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.searchbar {
+    margin-top: 1em;
+    width: 40%;
+    background-color: white;
+    border-style: none;
+    box-shadow: 0px 0px 4px gray;
+    padding: 1em;
+    border-radius: 30px;
+    color:black;
+}
+
+.buttons {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0.5em;
+    background-color: #f8f8f8;
+    text-decoration: none;
+    color: grey;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+}
+
+.buttons:hover {
+    border: 1px solid darkgrey;
+}
+
+#apps {
+    font-size: 1em;
+    padding-left: 1em;
+    background: black;
+    margin: 1em;
+}
+
+nav {
+    margin: 1em;
+}
+
+nav ul {
+    display: flex;
+    justify-content: end;
+    list-style-type: none;
+    margin-left: auto;
+    padding: 0;
+}
+
+nav ul li{
+    display: inline;
+}
+
+li a {
+    color: black;
+    text-align: center;
+    margin: 1em;
+    text-decoration: none;
+}
+
+li a:hover {
+    text-decoration: underline;
+}
+
+form div{
+    display: flex;
+    justify-content: center;
+    margin: 2em;
+}
