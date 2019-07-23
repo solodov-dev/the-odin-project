@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+}
+
+.table {
+    flex: 1;
+    display: flex;
+}
+
+p {
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 5em;
+    text-transform: uppercase;
+}
+
+.nav {
+    display: flex;
+    padding: 2em;
+    justify-content: center;
+}
+
+img {
+    height: 6em;
+    width: 6em;
+    border: 2px solid magenta;
+    padding: 1em;
+}
+
+.paper {
+    margin: 0 1em;
+}
+
+.computer img {
+    border-color: blue;
+} 
+
+.player img:hover{
+    transform: scale(1.1);
+}
