@@ -14,7 +14,7 @@ body {
     display: flex;
 }
 
-p {
+#score {
     margin: auto;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
@@ -33,6 +33,12 @@ img {
     width: 6em;
     border: 2px solid magenta;
     padding: 1em;
+    border-radius: 50px;
+    transition: all 0.2s;
+}
+
+.selected {
+    background-color: yellowgreen;
 }
 
 .paper {
@@ -40,7 +46,7 @@ img {
 }
 
 .computer img {
-    border-color: blue;
+    border-color: midnightblue;
 } 
 
 .player img:hover{
