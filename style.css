@@ -1,0 +1,50 @@
+div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+button {
+    border: none;
+}
+
+button:hover {
+    opacity: .9;
+}
+
+input, .equal{
+    grid-column: span 4;
+}
+
+.num {
+    background-color: olivedrab;
+}
+
+.operator {
+    background-color: lightcoral;
+}
+
+.equal {
+    background-color: darkcyan;
+}
+
+.clear {
+    background-color: orange;
+}
+
+.dot {
+    background-color: darkolivegreen;
+}
+
+input {
+    text-align: right;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1em;
+}
