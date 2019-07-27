@@ -1,21 +1,30 @@
 * {
     box-sizing: content-box;
 }
-
-#container {
-    width: 30%;
-    margin: auto;
+h1 {
     text-align: center;
 }
+
+#container {
+    margin: auto;
+    width: 100%;
+}
+
+div {
+    text-align: center;
+}
+
 #form {
     display: none;
     text-align: center;
-    position: absolute;
+    background-color: #5e4cd3;
+    position: fixed;
     width: 300px;
-    height: 100%;
-    top: 0;
-    left: 20px;
-    border: 1px solid;
+    height: 400px;
+    bottom: 70px;
+    right: 70px;
+    z-index: 9;
+    transition: .2s;
 }
 
 select {
@@ -30,32 +39,45 @@ input {
     margin: 1em;
 }
 
-button {
-    margin: 5px;
-    background-color: lightgray;
-    border: 1px solid;
-    border-radius: 20px;
-    padding: 10px;
+#addform {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: #5e4cd3;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    line-height: 0;
+    outline: none;
+    border: none;
+    z-index: 10;
+    transition: .3s;
 }
 
-button:hover{
-    background-color: white;
+#addform:hover {
+    transform: scale(1.3);
 }
 
-button:active{
-    background-color: beige;
+#addform::-moz-focus-inner{
+    border: 0;
 }
 
-.card {
+.row {
     border: 1px solid lightgray;
     padding: .2em;
     border-radius: 10px;
     text-align: left;
     margin: 2px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
 }
 
-.list {
-    margin-left: 10%;
-    list-style-type: disc;
+th {
+    text-align: center;
+    background-color: black;
+    color: white;
 }
