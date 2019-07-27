@@ -2,64 +2,8 @@ let myLibrary = [];
 let titles = ['Title', 'Author', 'Pages', 'Status', 'Remove'];
 let formIsOpen = false;
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.status = read;
-}
-
-function addBookToLibrary(Book) {
-  myLibrary.push(Book);
-}
-
-function toggleRead() {
-  alert('fuck you!');
-}
-
-function render(bookList) {
-  //Add table header
-  let row = document.createElement("tr");
-  row.className = "row";
-  for (title of titles) {
-    let th = document.createElement("th");
-    row.appendChild(th).innerHTML = title;
-  }
-  container.appendChild(row);
-  
-  //Add books
-  bookList.forEach(function(book, index) {
-    let row = document.createElement("tr");
-    row.className = "row";
-    row.setAttribute("data-index", index);
-    for (let property in book) {
-      if (book.hasOwnProperty(property)) {
-        let dataItem = document.createElement("td");
-        if (property == 'status') {
-          dataItem.innerHTML = (`<button onclick='toggleRead()'>${book[property]}</button>`);
-        } else {
-          dataItem.innerHTML = book[property];
-        }
-        
-        row.appendChild(dataItem);
-      }
-    }
-    let deleteItem = document.createElement("button");
-    deleteItem.innerHTML = '×';
-    deleteItem.onclick = toggleRead;
-    row.appendChild(deleteItem);
-
-    container.appendChild(row);
-  });
-}
-
 let theHobbit = new Book("The Hobbit", "J.R.R. Tolien", 295, "not read");
-let fiftyShadesOfGray = new Book(
-  "50 Shades of Gray",
-  "E.L.James",
-  116,
-  "not read"
-);
+let fiftyShadesOfGray = new Book("50 Shades of Gray","E.L.James",116,"not read");
 let theMagus = new Book("The Magus", "J.Fowles", 700, "read");
 
 addBookToLibrary(theHobbit);
@@ -76,6 +20,60 @@ let inputPages = document.querySelector("#pages");
 let inputRead = document.querySelector("#read");
 
 render(myLibrary);
+
+function Book(title, author, pages, read) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.status = read;
+}
+
+function addBookToLibrary(Book) {
+  myLibrary.push(Book);
+}
+
+function render(bookList) {
+  //Clear existing render
+  clearRender();
+  //Add table header
+  let row = document.createElement("tr");
+  row.className = "row";
+  for (title of titles) {
+    let th = document.createElement("th");
+    row.appendChild(th).innerHTML = title;
+  }
+  container.appendChild(row);
+  
+  //Add books
+  bookList.forEach(function(book, index) {
+    //Add row with data index
+    let row = document.createElement("tr");
+    row.className = "row";
+    row.setAttribute("data-index", index);
+
+    //Add data columns
+    for (let property in book) {
+      if (book.hasOwnProperty(property)) {
+        let dataItem = document.createElement("td");
+        if (property == 'status') {
+          dataItem.innerHTML = (`<button onclick='toggleRead(this)'>${book[property]}</button>`);
+        } else {
+          dataItem.innerHTML = book[property];
+        }
+        
+        row.appendChild(dataItem);
+      }
+    }
+
+    //Add remove column
+    let deleteItem = document.createElement("button");
+    deleteItem.innerHTML = '×';
+    deleteItem.setAttribute("onclick", "removeBook(this)");
+    row.appendChild(deleteItem);
+
+    container.appendChild(row);
+  });
+}
 
 inputFields.forEach(input => {
   input.addEventListener("focus", function(e) {
@@ -97,6 +95,12 @@ function showForm() {
   }
 }
 
+function clearRender() {
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+}
+
 function newBook() {
   let item = new Book(
     inputTitle.value,
@@ -106,11 +110,20 @@ function newBook() {
   );
 
   addBookToLibrary(item);
-
-  while (container.firstChild) {
-    console.log(container.firstChild);
-    container.removeChild(container.firstChild);
-  }
-
   render(myLibrary);
+}
+
+function removeBook(book) {
+  myLibrary.splice(book.parentNode.dataset.index,1);
+  render(myLibrary);
+}
+
+function toggleRead(button) {
+  if (button.innerHTML == 'read') {
+    button.innerHTML = 'not read';
+    myLibrary[button.parentNode.parentNode.dataset.index].status = 'not read';
+  } else {
+    button.innerHTML = 'read';
+    myLibrary[button.parentNode.parentNode.dataset.index].status = 'read';
+  }
 }
