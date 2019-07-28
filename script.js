@@ -12,11 +12,11 @@ addBookToLibrary(theMagus);
 
 let container = document.querySelector("#container");
 let addFormBtn = document.querySelector("#addform");
-let form = document.querySelector("#form");
+let form = document.querySelector("form");
 let inputTitle = document.querySelector("#title");
 let inputAuthor = document.querySelector("#author");
 let inputPages = document.querySelector("#pages");
-let inputRead = document.querySelector("#read");
+let inputRead = document.querySelector("select");
 
 render(myLibrary);
 
