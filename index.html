@@ -9,16 +9,16 @@
     <title>Library</title>
 </head>
 <body>
-    <form>
+    <form action="javascript:newBook();">
         <h1>Add a book</h1>
-        <input type="text" placeholder="Title" pattern="[A-Za-z]" id="title" required>
-        <input type="text" placeholder="Author" pattern="[A-Za-z]" id="author" required>
+        <input type="text" placeholder="Title" pattern="[A-Za-z' '0-9]+" id="title" required>
+        <input type="text" placeholder="Author" pattern="[A-Za-z' ']+" id="author" required>
         <input type="text" placeholder="Pages" pattern="[1-9][0-9]{0,2}" id="pages" required>
         <select>
             <option value="read">Read</option>
             <option value="not read">Not read</option>
         </select>
-        <button onclick="newBook()">Add</button>
+        <button>Add</button>
     </form>
     <h1>My Library</h1>
     <table id="container"></table>
