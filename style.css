@@ -2,9 +2,9 @@
     box-sizing: border-box;
 }
 #container {
-    width: 600px;
-    height: 600px;
-    background-color: blueviolet;
+    width: 300px;
+    height: 300px;
+    background-color: white;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -13,13 +13,14 @@
     grid-row-gap: 10px;
 }
 
-div div {
+.playfield{
     display: table-cell;
     background-color: lightblue;
     text-align: center;
     vertical-align: middle;
+    line-height: 90px;
 }
 
-div div:hover {
+.playfield:hover {
     background-color: antiquewhite;
 }
