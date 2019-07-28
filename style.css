@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+#container {
+    width: 600px;
+    height: 600px;
+    background-color: blueviolet;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+div div {
+    display: table-cell;
+    background-color: lightblue;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div div:hover {
+    background-color: antiquewhite;
+}
