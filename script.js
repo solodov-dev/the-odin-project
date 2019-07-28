@@ -13,7 +13,6 @@ addBookToLibrary(theMagus);
 let container = document.querySelector("#container");
 let addFormBtn = document.querySelector("#addform");
 let form = document.querySelector("#form");
-let inputFields = document.querySelectorAll("input");
 let inputTitle = document.querySelector("#title");
 let inputAuthor = document.querySelector("#author");
 let inputPages = document.querySelector("#pages");
@@ -46,7 +45,7 @@ function render(bookList) {
   
   //Add books
   bookList.forEach(function(book, index) {
-    //Add row with data index
+    //Add a row with data index
     let row = document.createElement("tr");
     row.className = "row";
     row.setAttribute("data-index", index);
@@ -56,7 +55,8 @@ function render(bookList) {
       if (book.hasOwnProperty(property)) {
         let dataItem = document.createElement("td");
         if (property == 'status') {
-          dataItem.innerHTML = (`<button onclick='toggleRead(this)'>${book[property]}</button>`);
+          dataItem.style.textAlign = 'center';
+          dataItem.innerHTML = `<button class='read' onclick='toggleRead(this)'>${book[property]}</button>`;
         } else {
           dataItem.innerHTML = book[property];
         }
@@ -66,20 +66,14 @@ function render(bookList) {
     }
 
     //Add remove column
-    let deleteItem = document.createElement("button");
-    deleteItem.innerHTML = '×';
-    deleteItem.setAttribute("onclick", "removeBook(this)");
+    let deleteItem = document.createElement("td");
+    deleteItem.style.textAlign = 'center';
+    deleteItem.innerHTML = `<button class='remove' onclick='removeBook(this)'>×</button></button>`;
     row.appendChild(deleteItem);
 
     container.appendChild(row);
   });
 }
-
-inputFields.forEach(input => {
-  input.addEventListener("focus", function(e) {
-    e.target.value = "";
-  });
-});
 
 function showForm() {
   if (formIsOpen) {
@@ -114,7 +108,7 @@ function newBook() {
 }
 
 function removeBook(book) {
-  myLibrary.splice(book.parentNode.dataset.index,1);
+  myLibrary.splice(book.parentNode.parentNode.dataset.index,1);
   render(myLibrary);
 }
 
@@ -127,3 +121,5 @@ function toggleRead(button) {
     myLibrary[button.parentNode.parentNode.dataset.index].status = 'read';
   }
 }
+
+//TODO add form validation and prettify

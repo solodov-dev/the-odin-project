@@ -1,8 +1,14 @@
 * {
     box-sizing: content-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
 h1 {
     text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #5e4cd3;
+    color: white;
 }
 
 #container {
@@ -14,7 +20,7 @@ div {
     text-align: center;
 }
 
-#form {
+form {
     display: none;
     text-align: center;
     background-color: #5e4cd3;
@@ -78,6 +84,35 @@ input {
 
 th {
     text-align: center;
-    background-color: black;
+    border-bottom: 1px white solid; 
     color: white;
+    background-color: #5e4cd3;
+}
+
+td {
+    border-bottom: 1px #5e4cd3 solid;
+}
+.remove {
+    border: none;
+    background-color: #f14640;
+    height: 20px;
+    width: 20px;
+    padding: 10px 10px;
+    border-radius: 50%;
+    color: white;
+}
+
+.remove:hover{
+    background-color: #ec6964;
+}
+
+.read {
+    border: 1px solid #5e4cd3;
+    background-color: none;
+    padding: 5px 5px;
+    border-radius: 20px;
+}
+
+.read::-moz-focus-inner {
+    border: none;
 }
