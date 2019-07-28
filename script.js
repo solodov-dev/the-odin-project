@@ -2,7 +2,7 @@ let myLibrary = [];
 let titles = ['Title', 'Author', 'Pages', 'Status', 'Remove'];
 let formIsOpen = false;
 
-let theHobbit = new Book("The Hobbit", "J.R.R. Tolien", 295, "not read");
+let theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "not read");
 let fiftyShadesOfGray = new Book("50 Shades of Gray","E.L.James",116,"not read");
 let theMagus = new Book("The Magus", "J.Fowles", 700, "read");
 
@@ -80,6 +80,9 @@ function showForm() {
     form.style.display = "none";
     addFormBtn.style.backgroundColor = "#5e4cd3";
     addFormBtn.innerHTML = '+'
+    inputTitle.value = '';
+    inputAuthor.value = '';
+    inputPages.value = '';
     formIsOpen = false;
   } else {
     form.style.display = "block";
@@ -105,6 +108,7 @@ function newBook() {
 
   addBookToLibrary(item);
   render(myLibrary);
+  showForm();
 }
 
 function removeBook(book) {
@@ -121,5 +125,3 @@ function toggleRead(button) {
     myLibrary[button.parentNode.parentNode.dataset.index].status = 'read';
   }
 }
-
-//TODO add form validation and prettify
