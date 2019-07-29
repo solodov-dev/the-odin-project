@@ -54,10 +54,6 @@ const gameBoard = (function Gameboard() {
   return {board, reset, move};
 })();
 
-function Player(name, type) {
-  return {name, type};
-}
-
 const displayController = (function Display() {
   let container = document.querySelector("#container");
 
@@ -104,6 +100,7 @@ const displayController = (function Display() {
     input2.value = "XOXO 3000";
     input2.id = "player-two-name";
     input2.disabled = true;
+    playerO.type = "computer";
 
     div.appendChild(input2);
 
@@ -140,8 +137,15 @@ const displayController = (function Display() {
   
   function startNewGame(){
     let header = document.querySelector("h1");
-    playerX.name = document.querySelector("#player-one-name").value;
-    playerO.name = document.querySelector("#player-two-name").value;
+
+    if(document.querySelector("#player-one-name").value){
+      playerX.name = document.querySelector("#player-one-name").value;
+    };
+
+    if(document.querySelector("#player-two-name").value){
+      playerO.name = document.querySelector("#player-two-name").value;
+    };
+
     header.innerHTML = `${playerX.name} vs ${playerO.name}`;
     header.style.visibility = "visible";
 
@@ -153,6 +157,10 @@ const displayController = (function Display() {
 
   return {render, clear, showGameType, newOnePlayerGame, newTwoPlayersGame, startNewGame};
 })();
+
+function Player(name, type) {
+  return {name, type};
+}
 
 let playerO = Player("John", "human");
 let playerX = Player("Glenn","human");
