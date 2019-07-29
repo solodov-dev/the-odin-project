@@ -86,7 +86,7 @@ const displayController = (function Display() {
     document.querySelector("#game-type").style.display = "flex";
   }
   
-  function showOnePlayerMenu(){
+  function showPlayersMenu(numOfPlayers){
     document.querySelector("#game-type").style.display = "none";
     let div = document.querySelector("#player-name-input");
     div.style.display = "flex";
@@ -98,10 +98,16 @@ const displayController = (function Display() {
     div.appendChild(input1);
 
     let input2 = document.createElement("input");
-    input2.value = "XOXO 3000";
     input2.id = "player-two-name";
-    input2.disabled = true;
-    playerO.type = "computer";
+
+    if(numOfPlayers == 1){
+      input2.value = "XOXO 3000";
+      input2.disabled = true;
+      playerO.type = "computer";
+    } else {
+      input2.setAttribute("placeholder", "Player O name");
+      playerO.type = "human";
+    }
 
     div.appendChild(input2);
 
@@ -109,30 +115,6 @@ const displayController = (function Display() {
     btn.setAttribute("onclick", "displayController.startNewGame()");
     btn.innerHTML = "Start";
     
-    div.appendChild(btn);
-  }
-
-  function showTwoPlayersMenu(){
-    document.querySelector("#game-type").style.display = "none";
-    let div = document.querySelector("#player-name-input");
-    div.style.display = "flex";
-    
-    let input1 = document.createElement("input");
-    input1.setAttribute("placeholder", "Player X name");
-    input1.id = "player-one-name";
-
-    div.appendChild(input1);
-
-    let input2 = document.createElement("input");
-    input2.setAttribute("placeholder", "Player O name");
-    input2.id = "player-two-name";
-
-    div.appendChild(input2);
-
-    let btn = document.createElement("button");
-    btn.setAttribute("onclick", "displayController.startNewGame()");
-    btn.innerHTML = "Start";    
-
     div.appendChild(btn);
   }
   
@@ -156,7 +138,7 @@ const displayController = (function Display() {
     displayController.render(gameBoard);
   }
 
-  return {render, clear, showTypeMenu, showOnePlayerMenu, showTwoPlayersMenu, startNewGame};
+  return {render, clear, showTypeMenu, showPlayersMenu, startNewGame};
 })();
 
 function Player(name, type) {
