@@ -1,8 +1,11 @@
 const gameBoard = (function Gameboard() {
   let board = [["", "", ""], ["", "", ""], ["", "", ""]];
-
   let sign = "o";
   let moves = 0;
+
+  function reset() {
+    board = [["", "", ""], ["", "", ""], ["", "", ""]];
+  }
 
   function isEmpty(row, col) {
     if (board[row][col] == "") {
@@ -48,11 +51,11 @@ const gameBoard = (function Gameboard() {
     }
   }
 
-  return { board, move, checkWinner };
+  return {board, reset, move};
 })();
 
-function Player(name) {
-  return { name };
+function Player(name, type) {
+  return {name, type};
 }
 
 const displayController = (function Display() {
@@ -75,22 +78,89 @@ const displayController = (function Display() {
     }
   }
 
-  function clear(gameBoard) {
+  function clear() {
     while (container.hasChildNodes()) {
       container.lastChild.remove();
     }
   }
 
-  return { render, clear };
+  function showGameType(){
+    document.querySelector("#new-game").style.display = "none";
+    document.querySelector("#game-type").style.display = "flex";
+  }
+  
+  function newOnePlayerGame(){
+    document.querySelector("#game-type").style.display = "none";
+    let div = document.querySelector("#player-name-input");
+    div.style.display = "flex";
+    
+    let input1 = document.createElement("input");
+    input1.setAttribute("placeholder", "Player X name");
+    input1.id = "player-one-name";
+
+    div.appendChild(input1);
+
+    let input2 = document.createElement("input");
+    input2.value = "XOXO 3000";
+    input2.id = "player-two-name";
+    input2.disabled = true;
+
+    div.appendChild(input2);
+
+    let btn = document.createElement("button");
+    btn.setAttribute("onclick", "displayController.startNewGame()");
+    btn.innerHTML = "Start";
+    
+    div.appendChild(btn);
+  }
+
+  function newTwoPlayersGame(){
+    document.querySelector("#game-type").style.display = "none";
+    let div = document.querySelector("#player-name-input");
+    div.style.display = "flex";
+    
+    let input1 = document.createElement("input");
+    input1.setAttribute("placeholder", "Player X name");
+    input1.id = "player-one-name";
+
+    div.appendChild(input1);
+
+    let input2 = document.createElement("input");
+    input2.setAttribute("placeholder", "Player O name");
+    input2.id = "player-two-name";
+
+    div.appendChild(input2);
+
+    let btn = document.createElement("button");
+    btn.setAttribute("onclick", "displayController.startNewGame()");
+    btn.innerHTML = "Start";    
+
+    div.appendChild(btn);
+  }
+  
+  function startNewGame(){
+    let header = document.querySelector("h1");
+    playerX.name = document.querySelector("#player-one-name").value;
+    playerO.name = document.querySelector("#player-two-name").value;
+    header.innerHTML = `${playerX.name} vs ${playerO.name}`;
+    header.style.visibility = "visible";
+
+    document.querySelector("#player-name-input").style.display = "none";
+    
+    container.style.display = "grid";
+    displayController.render(gameBoard);
+  }
+
+  return {render, clear, showGameType, newOnePlayerGame, newTwoPlayersGame, startNewGame};
 })();
 
-displayController.render(gameBoard);
+let playerO = Player("John", "human");
+let playerX = Player("Glenn","human");
 
 document.querySelector("#container").addEventListener("click", function(e) {
-  if (event.target.tagName.toLowerCase() === "div") {
-    let sign = gameBoard.move(e.target.dataset.row, e.target.dataset.col);
-    if (!sign) return;
-    displayController.clear(gameBoard);
+  if (event.target.className === "playfield") { //change to classname
+    if (!gameBoard.move(e.target.dataset.row, e.target.dataset.col)) return;
+    displayController.clear();
     displayController.render(gameBoard);
   }
 });
