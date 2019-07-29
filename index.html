@@ -15,17 +15,21 @@
         <h1>PlayerX vs Player0</h1>
         <div class="menu" id="new-game">
             <p>o Tic Tac Toe ×</p>
-            <button onclick="displayController.showGameType()">New Game</button>
+            <button onclick="displayController.showTypeMenu()">New Game</button>
         </div>
         <div class="menu hidden" id="game-type">
-            <button id="one-player" onclick="displayController.newOnePlayerGame()">One Player</button>
-            <button id="two-players" onclick="displayController.newTwoPlayersGame()">Two Players</button>
+            <button id="one-player" onclick="displayController.showOnePlayerMenu()">One Player</button>
+            <button id="two-players" onclick="displayController.showTwoPlayersMenu()">Two Players</button>
         </div>
         <div class="menu hidden" id="player-name-input"></div>
         <div class="menu hidden" id="two-player-name-input">
             <input type="text" placeholder="PlayerX name">
             <input type="text" placeholder="PlayerO name">
             <button onclick="displayController.startNewGame()">Start</button>
+        </div>
+        <div class="menu hidden" id="restart">
+            <p>You Won!</p>
+            <button onclick="displayController.showTypeMenu()">Start a new game.</button>
         </div>
         <div id="container"></div>
     </div>

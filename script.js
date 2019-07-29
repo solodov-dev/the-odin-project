@@ -80,12 +80,13 @@ const displayController = (function Display() {
     }
   }
 
-  function showGameType(){
+  function showTypeMenu(){
     document.querySelector("#new-game").style.display = "none";
+    document.querySelector("#container").style.display = "none";
     document.querySelector("#game-type").style.display = "flex";
   }
   
-  function newOnePlayerGame(){
+  function showOnePlayerMenu(){
     document.querySelector("#game-type").style.display = "none";
     let div = document.querySelector("#player-name-input");
     div.style.display = "flex";
@@ -111,7 +112,7 @@ const displayController = (function Display() {
     div.appendChild(btn);
   }
 
-  function newTwoPlayersGame(){
+  function showTwoPlayersMenu(){
     document.querySelector("#game-type").style.display = "none";
     let div = document.querySelector("#player-name-input");
     div.style.display = "flex";
@@ -155,7 +156,7 @@ const displayController = (function Display() {
     displayController.render(gameBoard);
   }
 
-  return {render, clear, showGameType, newOnePlayerGame, newTwoPlayersGame, startNewGame};
+  return {render, clear, showTypeMenu, showOnePlayerMenu, showTwoPlayersMenu, startNewGame};
 })();
 
 function Player(name, type) {
