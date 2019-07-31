@@ -37,6 +37,7 @@ button {
     margin: 10px auto;
     background-color: antiquewhite;
     border: none;
+    border-radius: 50px;
     padding: 5px;
     transition: .1s ease-in;
 }
