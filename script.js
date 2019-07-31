@@ -11,7 +11,7 @@ const gameBoard = (function Gameboard() {
   let moves = 1;
 
   function clear() {
-    board = [["", "", ""], ["", "", ""], ["", "", ""]];
+    board.fill("");
   }
 
   function cellIsEmpty(row, col) {
@@ -20,6 +20,100 @@ const gameBoard = (function Gameboard() {
     } else {
       return false;
     }
+  }
+
+  function lineIsFull(line, lineNumber) {
+    switch(line){
+      case "r":
+        for(let i = 0; i<3; i++) {
+          if(board[lineNumber][i] == "") return false;
+        }
+        break;
+      case "c":
+        for(let i = 0; i<3; i++) {
+          if(board[i][lineNumber] == "") return false;
+        }
+        break;
+      case "d":
+        if(lineNumber == 1) {
+          if((board[0][0] == "") || (board[1][1] == "") || (board[2][2] == "")) return false;
+        } else {
+          if((board[0][2] == "") || (board[1][1] == "") || (board[2][0] == "")) return false;
+        }
+        break;
+    }
+    return true;
+  }
+
+  function hasSigns(line, lineNumber, signsNumber, sign) {
+    let counter = 0;
+    switch(line){
+      case "r":
+        for(let i = 0; i<3; i++) {
+          if(board[lineNumber][i] == sign) counter++;
+        }
+        if(counter == signsNumber) return true;
+        break;
+      case "c":
+          for(let i = 0; i<3; i++) {
+            if(board[i][lineNumber] == sign) counter++;
+          }
+          if(counter == signsNumber) return true;
+          break;
+      case "d":
+        if(lineNumber == 1) {
+          for(let i = 0; i<3; i++) {
+            console.log("checking", i, i);
+            if(board[i][i] == sign) counter++;
+          }
+          if(counter == signsNumber) return true;
+        } else {
+          for(let i = 2, j = 0; i >= 0 && j < 3; i--, j++) {
+              console.log("checking", i , j)
+              if(board[i][j] == sign) counter++;
+          }
+          if(counter == signsNumber) return true;
+        }
+        break;
+    }
+    return false;
+  }
+
+  function isDiagonal(col, row) {
+    if((row == 0 || row == 2) && (col == 0 || col == 2)) {
+      return true;
+    } else if(col == row) {
+      return true;
+    }
+  }
+
+  function returnEmpty(line, lineNumber) {
+    switch(line){
+      case "r":
+        for(let i = 0; i<3; i++) {
+          if(board[lineNumber][i] == "") return {row: lineNumber, col: i};
+        }
+        break;
+      case "c":
+        for(let i = 0; i<3; i++) {
+          if(board[i][lineNumber] == "") return {row: i, col: lineNumber};
+        }
+        break;
+      case "d":
+          if(lineNumber == 1) {
+            for(let i = 0; i<3; i++) {
+              if(board[i][i] == "") return {row: i, col:i};
+            }
+          } else {
+            for(let i = 2; i>0; i--) {
+              for(let j = 0; j<3; j++){
+                if(board[i][j] == sign) return {row: i, col:j};
+              }
+            }
+          }
+          break;
+    }
+    return false;
   }
 
   function changeCurrentPlayer() {
@@ -33,16 +127,16 @@ const gameBoard = (function Gameboard() {
 
   function computerRandomMove() {
     //Check corners. If empty - return coordinates
-    for (let i = 0; i <= 3; i += 2) {
-      for (let j = 0; j <= 3; j += 2) {
+    for (let i = 0; i < 3; i += 2) {
+      for (let j = 0; j < 3; j += 2) {
         if (cellIsEmpty(i, j)) {
           return { row: i, col: j };
         }
       }
     }
 
-    for (let i=0; i<=3; i++) {
-      for (let j=0; j<=3; j++) {
+    for (let i=0; i<3; i++) {
+      for (let j=0; j<3; j++) {
         if(cellIsEmpty(i,j)) {
           return { row: i, col: j };
         }
@@ -67,31 +161,19 @@ const gameBoard = (function Gameboard() {
         return { row: 0, col: 1 };
       }
     }
-
     return computerRandomMove();
   }
 
   function checkWinner(row, col) {
-    if (
-      (board[row][0] == currentPlayer.sign &&
-        board[row][1] == currentPlayer.sign &&
-        board[row][2] == currentPlayer.sign) || //ckeck row
-      (board[0][col] == currentPlayer.sign &&
-        board[1][col] == currentPlayer.sign &&
-        board[2][col] == currentPlayer.sign) || //check column
-      (board[0][0] == currentPlayer.sign &&
-        board[1][1] == currentPlayer.sign &&
-        board[2][2] == currentPlayer.sign) || //check dioganals
-      (board[0][2] == currentPlayer.sign &&
-        board[1][1] == currentPlayer.sign &&
-        board[2][0] == currentPlayer.sign)
-    ) {
-      alert("won!");
+    if(lineIsFull("r", row) && hasSigns("r",row,3,currentPlayer.sign)) alert("won!");
+    if(lineIsFull("c",col) && hasSigns("c",col,3,currentPlayer.sign)) alert("won");
+    if(isDiagonal(row,col)) {
+      if(lineIsFull("d", 1) && hasSigns("d",1,3,currentPlayer.sign)) alert("won!");
+      if(lineIsFull("d", 2) && hasSigns("d",2,3,currentPlayer.sign)) alert("won!");
     }
-
-    if (moves > 9) alert("tie!");
+    if (moves >= 9) alert("tie!");
   }
-  
+
   function computerMove() {
     let coordinates = calculateComputerMove();
     console.log(coordinates);
