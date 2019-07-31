@@ -2,16 +2,33 @@ function Player(name, type, sign, lastMove) {
   return { name, type, sign, lastMove };
 }
 
-let playerX = Player("Glenn", "human", "×");
-let playerO = Player("John", "human", "o");
+let playerX = Player("Glenn", "human", "×", {row: -1, col: -1});
+let playerO = Player("John", "human", "o", {row: -1, col: -1});
 
 const gameBoard = (function Gameboard() {
   let board = [["", "", ""], ["", "", ""], ["", "", ""]];
   let currentPlayer = playerX;
-  let moves = 1;
+  let moves = 0;
 
   function clear() {
-    board.fill("");
+    for(let i = 0; i < 3; i++) {
+      for(let j = 0; j < 3;  j++)  {
+        board[i][j] = "";
+      }
+    }
+
+    playerX.name = "Glenn";
+    playerX.type = "human";
+    playerX.sign = "×";
+    playerX.lastMove = {row: 0, col: 0};
+
+    playerO.name = "John";
+    playerO.type = "human";
+    playerO.sign = "o";
+    playerO.lastMove = {row: 0, col: 0};
+
+    currentPlayer = playerX;
+    moves = 0;
   }
 
   function cellIsEmpty(row, col) {
@@ -63,13 +80,11 @@ const gameBoard = (function Gameboard() {
       case "d":
         if(lineNumber == 1) {
           for(let i = 0; i<3; i++) {
-            console.log("checking", i, i);
             if(board[i][i] == sign) counter++;
           }
           if(counter == signsNumber) return true;
         } else {
           for(let i = 2, j = 0; i >= 0 && j < 3; i--, j++) {
-              console.log("checking", i , j)
               if(board[i][j] == sign) counter++;
           }
           if(counter == signsNumber) return true;
@@ -79,7 +94,7 @@ const gameBoard = (function Gameboard() {
     return false;
   }
 
-  function isDiagonal(col, row) {
+  function isDiagonal(row, col) {
     if((row == 0 || row == 2) && (col == 0 || col == 2)) {
       return true;
     } else if(col == row) {
@@ -107,7 +122,7 @@ const gameBoard = (function Gameboard() {
           } else {
             for(let i = 2; i>0; i--) {
               for(let j = 0; j<3; j++){
-                if(board[i][j] == sign) return {row: i, col:j};
+                if(board[i][j] == "") return {row: i, col:j};
               }
             }
           }
@@ -122,7 +137,7 @@ const gameBoard = (function Gameboard() {
     } else {
       currentPlayer = playerX;
     }
-    console.log("Changed");
+    moves++;
   }
 
   function computerRandomMove() {
@@ -146,6 +161,8 @@ const gameBoard = (function Gameboard() {
 
   function calculateComputerMove() {
     // If the first move and the middle field is empty
+    console.log(moves);
+    console.log(board[1][1]);
     if (moves == 1 && board[1][1] == "") {
       return { row: 1, col: 1 };
     }
@@ -161,42 +178,63 @@ const gameBoard = (function Gameboard() {
         return { row: 0, col: 1 };
       }
     }
+
+    // Calculate the best move to close the line
+    if (!lineIsFull("r",playerO.lastMove.row) && hasSigns("r", playerO.lastMove.row, 2, playerO.sign)) return returnEmpty("r", playerO.lastMove.row);
+    if (!lineIsFull("c",playerO.lastMove.col) && hasSigns("c", playerO.lastMove.col, 2, playerO.sign)) return returnEmpty("c", playerO.lastMove.col);
+    if (isDiagonal(playerO.lastMove.row, playerO.lastMove.col)) {
+      if (!lineIsFull("d",1) && hasSigns("d", 1, 2, playerO.sign)) return returnEmpty("d", 1);
+      if (!lineIsFull("d",2) && hasSigns("d", 2, 2, playerO.sign)) return returnEmpty("d", 2);
+    }
+    
+    // Calculate the best move to defend
+    if (!lineIsFull("r",playerX.lastMove.row) && hasSigns("r", playerX.lastMove.row, 2, playerX.sign)) return returnEmpty("r", playerX.lastMove.row);
+    if (!lineIsFull("c",playerX.lastMove.col) && hasSigns("c", playerX.lastMove.col, 2, playerX.sign)) return returnEmpty("c", playerX.lastMove.col);
+    if (isDiagonal(playerX.lastMove.row, playerX.lastMove.col)) {
+      if (!lineIsFull("d",1) && hasSigns("d", 1, 2, playerX.sign)) return returnEmpty("d", 1);
+      if (!lineIsFull("d",2) && hasSigns("d", 2, 2, playerX.sign)) return returnEmpty("d", 2);
+    }
+
     return computerRandomMove();
+
+  }
+
+  function placeMove(row, col) {
+    board[row][col] = currentPlayer.sign;
   }
 
   function checkWinner(row, col) {
-    if(lineIsFull("r", row) && hasSigns("r",row,3,currentPlayer.sign)) alert("won!");
-    if(lineIsFull("c",col) && hasSigns("c",col,3,currentPlayer.sign)) alert("won");
+    if(lineIsFull("r", row) && hasSigns("r",row,3,currentPlayer.sign)) return true;
+    if(lineIsFull("c",col) && hasSigns("c",col,3,currentPlayer.sign)) return true;
     if(isDiagonal(row,col)) {
-      if(lineIsFull("d", 1) && hasSigns("d",1,3,currentPlayer.sign)) alert("won!");
-      if(lineIsFull("d", 2) && hasSigns("d",2,3,currentPlayer.sign)) alert("won!");
+      if(lineIsFull("d", 1) && hasSigns("d",1,3,currentPlayer.sign)) return true;
+      if(lineIsFull("d", 2) && hasSigns("d",2,3,currentPlayer.sign)) return true;
     }
-    if (moves >= 9) alert("tie!");
+    if (moves >= 8) return true;
+    console.log(moves);
+    return false;
   }
 
   function computerMove() {
     let coordinates = calculateComputerMove();
-    console.log(coordinates);
-    board[coordinates.row][coordinates.col] = currentPlayer.sign;
-    checkWinner(coordinates.row, coordinates.col);
-    moves++;
-    changeCurrentPlayer();
+    placeMove(coordinates.row, coordinates.col);
+    playerO.lastMove.row = coordinates.row;
+    playerO.lastMove.col = coordinates.col;
+    return coordinates;
   }
 
-  function move(row, col) {
-    console.log(moves);
+  function playerMove(row, col) {
     if (cellIsEmpty(row, col)) {
-      board[row][col] = currentPlayer.sign;
-      checkWinner(row, col);
-      changeCurrentPlayer();
-      moves++;
+      placeMove(row, col);
+      playerX.lastMove.row = row;
+      playerX.lastMove.col = col;
       return true;
     } else {
       return false;
     }
   }
 
-  return { board, clear, move, computerMove };
+  return { board, moves, clear, playerMove, computerMove, checkWinner, changeCurrentPlayer};
 })();
 
 const displayController = (function Display() {
@@ -221,14 +259,15 @@ const displayController = (function Display() {
   }
 
   //Clear playing field of child elements before rendering
-  function clear() {
-    while (container.hasChildNodes()) {
-      container.lastChild.remove();
+  function clear(element) {
+    while (element.hasChildNodes()) {
+      element.lastChild.remove();
     }
   }
 
   //Show menu with game type choices (Play with a computer or multiplayer)
   function showTypeMenu() {
+    document.querySelector("#winner").style.display = "none";
     document.querySelector("#new-game").style.display = "none";
     document.querySelector("#container").style.display = "none";
     document.querySelector("#game-type").style.display = "flex";
@@ -289,14 +328,39 @@ const displayController = (function Display() {
     displayController.render(gameBoard);
   }
 
-  return { render, clear, showTypeMenu, showPlayersMenu, startNewGame };
+  return {render, clear, showTypeMenu, showPlayersMenu, startNewGame};
 })();
+
+function reset(){
+  gameBoard.clear();
+  displayController.clear(document.querySelector("#container"));
+  displayController.clear(document.querySelector("#player-name-input"));
+  document.querySelector("#container").style.display = "none";
+  document.querySelector("#winner").style.display = "flex";
+}
 
 document.querySelector("#container").addEventListener("click", function(e) {
   if (event.target.className === "playfield") {
-    if (!gameBoard.move(e.target.dataset.row, e.target.dataset.col)) return;
-    if (playerO.type == "computer") gameBoard.computerMove();
-    displayController.clear();
+    if (!gameBoard.playerMove(e.target.dataset.row, e.target.dataset.col)) {
+      return
+    } else {
+      if (gameBoard.checkWinner(e.target.dataset.row, e.target.dataset.col)) {
+        reset()
+        return;
+      };
+      gameBoard.changeCurrentPlayer();
+    }
+
+    if (playerO.type == "computer") {
+      let  coordinates = gameBoard.computerMove();
+      if (gameBoard.checkWinner(coordinates.row, coordinates.col)) {
+        reset()
+        return;
+      };
+      gameBoard.changeCurrentPlayer();
+    };
+
+    displayController.clear(document.querySelector("#container"));
     displayController.render(gameBoard);
   }
 });
