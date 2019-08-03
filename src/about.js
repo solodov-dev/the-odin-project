@@ -1,4 +1,5 @@
 export default function about() {
+
   const container = document.querySelector("#content");
 
   const aboutContainer = document.createElement('div');
@@ -18,8 +19,13 @@ export default function about() {
                         sushi dishes in our specialty signature rolls. We take pride 
                         and passion in serving this artistic culinary form. The exclusive 
                         use of high quality and fresh ingredients is our top priority. `;
-  
+  aboutText.style.padding = '0 20%';
   aboutContainer.appendChild(h1);
-  aboutContainer.appendChild(aboutText);                      
+  aboutContainer.appendChild(aboutText);     
+  
+  const img = document.createElement('img');
+  img.src = 'images/kitchen.jpeg';
+  img.classList.add('about-img');
+  aboutContainer.appendChild(img);
   container.appendChild(aboutContainer);
 }

@@ -10,9 +10,11 @@ export default function initializeContent() {
 
     const arrowDown = document.createElement('p');
     arrowDown.classList.add('arrowDown');
-    arrowDown.innerHTML = 'V';
-    header.appendChild(arrowDown);
-    
+        
+    const bounceContainer = document.createElement('div');
+    bounceContainer.classList.add('bounce');
+    bounceContainer.appendChild(arrowDown);
+    header.appendChild(bounceContainer);
 
     const menu = document.createElement('nav');    
     const ul = document.createElement('ul');
@@ -28,7 +30,7 @@ export default function initializeContent() {
     li3.id = 'location';
     li1.innerHTML = 'About';
     li2.innerHTML = 'Menu';
-    li3.innerHTML = 'Location';
+    li3.innerHTML = 'Map';
     ul.appendChild(li1);
     ul.appendChild(li2);
     ul.appendChild(li3);

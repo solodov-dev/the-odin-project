@@ -1,5 +1,5 @@
 export default function location(){
-    
+    const workingHours = ['Monday - Thursday: 11:30am - 9pm', 'Friday - Saturday: 11:30am - 10pm', 'Sunday: 12pm - 9pm'];
     const container = document.querySelector("#content");
     const locationSelected = document.querySelector('#location');
     locationSelected.classList.add('menu-item-selected'); 
@@ -15,6 +15,17 @@ export default function location(){
     
     locationContainer.appendChild(h1);
     locationContainer.appendChild(locationMap);
+
+    const hoursHeader = document.createElement('h3');
+    hoursHeader.innerHTML = 'Hours';
+    locationContainer.appendChild(hoursHeader);
+
+    for (let i = 0; i < workingHours.length; i++) {
+      let listItem = document.createElement('p');
+      listItem.innerHTML = workingHours[i];
+      locationContainer.appendChild(listItem);
+    }
+
     container.appendChild(locationContainer);
     
     let wassabiCoordinates = {lat: 35.73, lng: -78.80};
