@@ -2,6 +2,13 @@
 
 const render = (todoList) => {
     let container = document.querySelector('#container')
+    
+    // Clear the table
+    while (container.firstChild) {
+        container.removeChild(container.firstChild)
+    }
+
+    // Add elements
     todoList.forEach(element => {
         let row = document.createElement('tr')
         
