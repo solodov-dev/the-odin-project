@@ -11,8 +11,10 @@ const render = (todoList) => {
     // Add elements
     todoList.forEach(element => {
         let row = document.createElement('tr')
+        row.classList.add('table-row')
         
         let checker = document.createElement('td')
+        checker.classList.add('done')
         if (element.done == true){
             checker.innerHTML = '<input type="checkbox" name="done" checked>'
         }
@@ -22,7 +24,8 @@ const render = (todoList) => {
         row.appendChild(checker)
 
         let title = document.createElement('td')
-        title.innerHTML = element.title
+        title.classList.add('title')
+        title.innerHTML = element.title + `<span class='delete'>delete</span>`
         row.appendChild(title)
 
         container.appendChild(row)
@@ -32,12 +35,16 @@ const render = (todoList) => {
 // Function to render/show the form for adding new todos
 
 const renderAddForm = () => {
-    let inputForm = document.querySelector('#add_todo')
+    let inputForm = document.querySelector('#add-todo-window')
     if (inputForm.style.visibility == 'hidden') {
         inputForm.style.visibility = 'visible'
     } else {
         inputForm.style.visibility = 'hidden'
     }
+}
+
+const renderNav = (title) => {
+    document.querySelector('nav').innerHTML = title;
 }
 
 export {render, renderAddForm}
