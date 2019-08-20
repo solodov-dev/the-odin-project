@@ -18,10 +18,19 @@ document.querySelector("#add").addEventListener('click', function(){
     renderAddForm()
 })
 
-document.querySelectorAll('tr').forEach(row => row.addEventListener('mouseenter', function(e){
-    e.target.querySelector('.delete').style.visibility = 'visible'
-}))
-
-document.querySelectorAll('tr').forEach(row => row.addEventListener('mouseleave', function(e){
-    e.target.querySelector('.delete').style.visibility = 'hidden'
-}))
+document.querySelector('table').addEventListener('mouseover', function(e){
+    if (e.target.className == 'title') {
+        e.target.querySelector('.delete').style.visibility = 'visible'
+    }
+})
+document.querySelector('table').addEventListener('pointerout', function(e){
+    if (e.target.className === 'title') {
+        e.target.querySelector('.delete').style.visibility = 'hidden'
+    }
+})
+document.querySelector('table').addEventListener('click', function(e){
+    if (e.target.className === 'delete') {
+        todoList.splice(e.target.parentNode.parentNode.rowIndex, 1)
+    }
+    render(todoList)
+})

@@ -96,8 +96,8 @@ tr, td {
 }
 
 .delete {
-  padding-right: 1em;
-  padding-left: 1em;
+  float: right;
+  padding-left: 5em;
   color: lightgrey;
   visibility: hidden;
 }
