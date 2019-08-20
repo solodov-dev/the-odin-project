@@ -1,5 +1,5 @@
 import {todoFactory} from "./logic"
-import {render, renderAddForm, renderNav, renderMenu} from "./render"
+import {render, renderAddForm, renderAddProjectForm, renderNav, renderMenu} from "./render"
 
 let todoList = []
 let projects = ['inbox',]
@@ -10,10 +10,9 @@ render(todoList)
 renderNav(projects[0])
 renderMenu(projects)
 
+// Add todo form listeners
 document.querySelector(".main-btn").addEventListener('click', renderAddForm)
-
 document.querySelector("#close-add-form").addEventListener('click', renderAddForm)
-
 document.querySelector("#add").addEventListener('click', function(){
     event.preventDefault(); //Prevent the page from refreshing
     let newTodo = todoFactory(document.forms['addTodo'].elements['title'].value, document.forms['addTodo'].elements['due-date'].value)
@@ -21,6 +20,29 @@ document.querySelector("#add").addEventListener('click', function(){
     render(todoList)
     renderAddForm()
 })
+
+// Add project form listeners
+document.querySelector(".dropdown-content").addEventListener('click', function(e){
+    if (e.target.classList.contains('add-project')) {
+        renderAddProjectForm()
+        return
+    }
+
+    if (e.target.classList.contains('menu-item')) {
+        renderNav(e.target.innerHTML)
+        renderMenu(projects)
+        return
+    }
+})
+document.querySelector("#close-project-form").addEventListener('click', renderAddProjectForm)
+document.querySelector("#add-project").addEventListener('click', function(){
+    event.preventDefault(); //Prevent the page from refreshing
+    projects.push(document.forms['addProject'].elements['project-title'].value.toLowerCase())
+    renderNav(projects[projects.length-1])
+    renderMenu(projects)
+    renderAddProjectForm()
+})
+
 
 document.querySelector('table').addEventListener('click', function(e){
     if (e.target.classList.contains('delete')) {

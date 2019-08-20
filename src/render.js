@@ -43,6 +43,15 @@ const renderAddForm = () => {
     }
 }
 
+const renderAddProjectForm = () => {
+    let inputForm = document.querySelector('#add-project-window')
+    if (inputForm.style.visibility == 'hidden') {
+        inputForm.style.visibility = 'visible'
+    } else {
+        inputForm.style.visibility = 'hidden'
+    }
+}
+
 // Render navigation header
 
 const renderNav = (project) => {
@@ -53,6 +62,9 @@ const renderNav = (project) => {
 
 const renderMenu = (projects) => {
     let menu = document.querySelector('.dropdown-content')
+    while (menu.firstChild) {
+        menu.removeChild(menu.firstChild)
+    }
     projects.forEach(project => {
         if (document.querySelector('#current-project').innerHTML == project) {
             return
@@ -65,8 +77,8 @@ const renderMenu = (projects) => {
 
     let addProject = document.createElement('a')
     addProject.innerHTML = '+ Add Project'
-    addProject.classList.add('menu-item')
+    addProject.classList.add('menu-item', 'add-project')
     menu.appendChild(addProject)
 }
 
-export {render, renderAddForm, renderNav, renderMenu}
+export {render, renderAddForm, renderAddProjectForm, renderNav, renderMenu}
