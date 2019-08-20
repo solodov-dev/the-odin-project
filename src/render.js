@@ -1,6 +1,6 @@
 // Main render function. Renders the todoList for a project
 
-const render = (todoList) => {
+const render = (todoList, project) => {
     let container = document.querySelector('#container')
     
     // Clear the table
@@ -9,26 +9,31 @@ const render = (todoList) => {
     }
 
     // Add elements
+    let index = 0
     todoList.forEach(element => {
-        let row = document.createElement('tr')
-        row.classList.add('table-row')
-        
-        let checker = document.createElement('td')
-        checker.classList.add('done')
-        if (element.done == true){
-            checker.innerHTML = '<input type="checkbox" name="done" checked>'
-        }
-        else {
-            checker.innerHTML = '<input type="checkbox" name="done">'
-        }
-        row.appendChild(checker)
+        if (element.project == project){   
+            let row = document.createElement('tr')
+            row.classList.add('table-row')
+            row.dataset.index = index
 
-        let title = document.createElement('td')
-        title.classList.add('title')
-        title.innerHTML = element.title + `<span class='edit-todo-menu delete'>delete</span>`
-        row.appendChild(title)
+            let checker = document.createElement('td')
+            checker.classList.add('done')
+            if (element.done == true){
+                checker.innerHTML = '<input type="checkbox" name="done" checked>'
+            }
+            else {
+                checker.innerHTML = '<input type="checkbox" name="done">'
+            }
+            row.appendChild(checker)
 
-        container.appendChild(row)
+            let title = document.createElement('td')
+            title.classList.add('title')
+            title.innerHTML = element.title + `<span class='edit-todo-menu delete'>delete</span>`
+            row.appendChild(title)
+
+            container.appendChild(row)
+        }
+        index++
     });
 }
 
