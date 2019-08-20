@@ -1,4 +1,4 @@
-// Main render function. Renders the whole app (todo list)
+// Main render function. Renders the todoList for a project
 
 const render = (todoList) => {
     let container = document.querySelector('#container')
@@ -25,7 +25,7 @@ const render = (todoList) => {
 
         let title = document.createElement('td')
         title.classList.add('title')
-        title.innerHTML = element.title + `<span class='delete'>delete</span>`
+        title.innerHTML = element.title + `<span class='edit-todo-menu delete'>delete</span>`
         row.appendChild(title)
 
         container.appendChild(row)
@@ -43,8 +43,27 @@ const renderAddForm = () => {
     }
 }
 
-const renderNav = (title) => {
-    document.querySelector('nav').innerHTML = title;
+// Render navigation header
+
+const renderNav = (project) => {
+    document.querySelector('#showmenu').innerHTML = `${project}  &#9662;`
 }
 
-export {render, renderAddForm}
+// Render projects menu
+
+const renderMenu = (projects) => {
+    let menu = document.querySelector('.dropdown-content')
+    projects.forEach(project => {
+        let menuItem = document.createElement('a')
+        menuItem.innerHTML = project
+        menuItem.classList.add('menu-item')
+        menu.appendChild(menuItem)
+    })
+
+    let addProject = document.createElement('a')
+    addProject.innerHTML = '+ Add Project'
+    addProject.classList.add('menu-item')
+    menu.appendChild(addProject)
+}
+
+export {render, renderAddForm, renderNav, renderMenu}

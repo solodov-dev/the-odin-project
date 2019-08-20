@@ -1,13 +1,17 @@
 import {todoFactory} from "./logic"
-import {render, renderAddForm} from "./render"
+import {render, renderAddForm, renderNav, renderMenu} from "./render"
 
 let todoList = []
+let projects = ['inbox',]
 let defaultTodo = todoFactory('Example todo', '19.08.2019')
 
-todoList.push(defaultTodo);
+todoList.push(defaultTodo)
 render(todoList)
+renderNav(projects[0])
+renderMenu(projects)
 
-document.querySelector(".main-btn").addEventListener('click', renderAddForm);
+document.querySelector(".main-btn").addEventListener('click', renderAddForm)
+
 document.querySelector("#close-add-form").addEventListener('click', renderAddForm)
 
 document.querySelector("#add").addEventListener('click', function(){
@@ -18,16 +22,6 @@ document.querySelector("#add").addEventListener('click', function(){
     renderAddForm()
 })
 
-document.querySelector('table').addEventListener('mouseover', function(e){
-    if (e.target.className == 'title') {
-        e.target.querySelector('.delete').style.visibility = 'visible'
-    }
-})
-document.querySelector('table').addEventListener('pointerout', function(e){
-    if (e.target.className === 'title') {
-        e.target.querySelector('.delete').style.visibility = 'hidden'
-    }
-})
 document.querySelector('table').addEventListener('click', function(e){
     if (e.target.className === 'delete') {
         todoList.splice(e.target.parentNode.parentNode.rowIndex, 1)
