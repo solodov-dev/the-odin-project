@@ -3,7 +3,7 @@ import {render, renderAddForm, renderNav, renderMenu} from "./render"
 
 let todoList = []
 let projects = ['inbox',]
-let defaultTodo = todoFactory('Example todo', '19.08.2019')
+let defaultTodo = todoFactory('Example todo', projects[0], '19.08.2019')
 
 todoList.push(defaultTodo)
 render(todoList)
@@ -23,8 +23,8 @@ document.querySelector("#add").addEventListener('click', function(){
 })
 
 document.querySelector('table').addEventListener('click', function(e){
-    if (e.target.className === 'delete') {
+    if (e.target.classList.contains('delete')) {
         todoList.splice(e.target.parentNode.parentNode.rowIndex, 1)
+        render(todoList)
     }
-    render(todoList)
 })

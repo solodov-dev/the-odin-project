@@ -46,7 +46,7 @@ const renderAddForm = () => {
 // Render navigation header
 
 const renderNav = (project) => {
-    document.querySelector('#showmenu').innerHTML = `${project}  &#9662;`
+    document.querySelector('#current-project').innerHTML = project
 }
 
 // Render projects menu
@@ -54,6 +54,9 @@ const renderNav = (project) => {
 const renderMenu = (projects) => {
     let menu = document.querySelector('.dropdown-content')
     projects.forEach(project => {
+        if (document.querySelector('#current-project').innerHTML == project) {
+            return
+        }
         let menuItem = document.createElement('a')
         menuItem.innerHTML = project
         menuItem.classList.add('menu-item')
