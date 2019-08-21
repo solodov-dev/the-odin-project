@@ -7,7 +7,7 @@ body {
 }
 
 #main {
-  width: 60%;
+  width: 30%;
   margin: 0 auto;
 }
 
@@ -53,14 +53,23 @@ a:hover{
 
 /* Table styles */
 
-table {
+.table {
   margin: 20px auto;
-  border-collapse: collapse;
 }
 
-tr, td {
+.table-row {
+  padding: 1em;
   border-bottom: 1px solid lightgray;
-  padding: .5em;
+}
+
+.table-row:hover > .edit-todo-menu {
+  visibility: visible;
+}
+
+.todo-data {
+  display: inline-block;
+  padding-right: 2em;
+  cursor: pointer;
 }
 
 .edit-todo-menu {
@@ -69,18 +78,20 @@ tr, td {
   float: right;
 }
 
-.title:hover > .edit-todo-menu {
-  visibility: visible;
-}
-
-.delete {
-  padding-left: 5em;
-}
-
-.delete:hover {
+.edit-todo-menu:hover {
   color: #0c0c0c;
   cursor: pointer;
 }
+
+.todo-comment {
+  padding-top: 2em;
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
 /* Button styles */
 
 .main-btn{

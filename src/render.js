@@ -1,5 +1,4 @@
 // Main render function. Renders the todoList for a project
-
 const render = (todoList, project) => {
     let container = document.querySelector('#container')
     
@@ -12,12 +11,12 @@ const render = (todoList, project) => {
     let index = 0
     todoList.forEach(element => {
         if (element.project == project){   
-            let row = document.createElement('tr')
+            let row = document.createElement('div')
             row.classList.add('table-row')
             row.dataset.index = index
 
-            let checker = document.createElement('td')
-            checker.classList.add('done')
+            let checker = document.createElement('div')
+            checker.classList.add('todo-data', 'done')
             if (element.done == true){
                 checker.innerHTML = '<input type="checkbox" name="done" checked>'
             }
@@ -26,10 +25,20 @@ const render = (todoList, project) => {
             }
             row.appendChild(checker)
 
-            let title = document.createElement('td')
-            title.classList.add('title')
-            title.innerHTML = element.title + `<span class='edit-todo-menu delete'>delete</span>`
+            let title = document.createElement('div')
+            title.classList.add('todo-data', 'title')
+            title.innerHTML = element.title
             row.appendChild(title)
+
+            let del = document.createElement('div')
+            del.innerHTML = 'delete'
+            del.classList.add('edit-todo-menu', 'delete')
+            row.appendChild(del)
+            
+            let comment = document.createElement('div')
+            comment.innerHTML = element.comment
+            comment.classList.add('todo-comment')
+            row.appendChild(comment)
 
             container.appendChild(row)
         }
@@ -38,7 +47,6 @@ const render = (todoList, project) => {
 }
 
 // Function to render/show the form for adding new todos
-
 const renderAddForm = () => {
     let inputForm = document.querySelector('#add-todo-window')
     if (inputForm.style.visibility == 'hidden') {
@@ -48,6 +56,7 @@ const renderAddForm = () => {
     }
 }
 
+// Redner project form
 const renderAddProjectForm = () => {
     let inputForm = document.querySelector('#add-project-window')
     if (inputForm.style.visibility == 'hidden') {
@@ -58,13 +67,11 @@ const renderAddProjectForm = () => {
 }
 
 // Render navigation header
-
 const renderNav = (project) => {
     document.querySelector('#current-project').innerHTML = project
 }
 
 // Render projects menu
-
 const renderMenu = (projects) => {
     let menu = document.querySelector('.dropdown-content')
     while (menu.firstChild) {

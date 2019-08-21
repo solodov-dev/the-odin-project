@@ -3,7 +3,7 @@ import {render, renderAddForm, renderAddProjectForm, renderNav, renderMenu} from
 
 let todoList = []
 let projects = ['inbox',]
-let defaultTodo = todoFactory('Example todo', projects[0], '19.08.2019')
+let defaultTodo = todoFactory('Example todo', projects[0], '19.08.2019', 'You can add your comments here.')
 
 todoList.push(defaultTodo)
 renderNav(projects[0])
@@ -25,10 +25,16 @@ document.querySelector("#add").addEventListener('click', function(){
     renderAddForm()
 })
 // Delete todo
-document.querySelector('table').addEventListener('click', function(e){
+document.querySelector('#container').addEventListener('click', function(e){
     if (e.target.classList.contains('delete')) {
-        todoList.splice(e.target.parentNode.parentNode.dataset.index, 1)
+        todoList.splice(e.target.parentNode.dataset.index, 1)
         render(todoList, document.querySelector('#current-project').innerHTML)
+    }
+})
+// Show comment
+document.querySelector('.table').addEventListener('click', function(e){
+    if (e.target.classList.contains('title')) {
+        e.target.parentNode.querySelector('.todo-comment').classList.toggle('show')
     }
 })
 

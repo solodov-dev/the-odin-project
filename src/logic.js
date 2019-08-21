@@ -1,11 +1,7 @@
-const todoFactory = (title, project, dueDate) => {
+const todoFactory = (title, project, dueDate, comment) => {
     let done = false;
 
-    const getDone = () => {
-        done = true;
-    }
-    
-    return {title, project, dueDate, done, getDone}
+    return {title, project, dueDate, comment}
 }
 
 export {todoFactory,}
