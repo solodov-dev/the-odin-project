@@ -24,16 +24,28 @@ const render = (todoList, project) => {
                 checker.innerHTML = '<input type="checkbox" name="done">'
             }
             row.appendChild(checker)
+            
 
             let title = document.createElement('div')
             title.classList.add('todo-data', 'title')
             title.innerHTML = element.title
+            
+            let due = document.createElement('div')
+            due.innerHTML = 'due: '+ element.dueDate
+            due.classList.add('todo-menu', 'due-date')
+
+            title.appendChild(due)
             row.appendChild(title)
 
             let del = document.createElement('div')
             del.innerHTML = 'delete'
-            del.classList.add('edit-todo-menu', 'delete')
+            del.classList.add('todo-menu', 'delete')
             row.appendChild(del)
+
+            let edit = document.createElement('div')
+            edit.innerHTML = 'edit'
+            edit.classList.add('todo-menu', 'edit')
+            row.appendChild(edit)
             
             let comment = document.createElement('div')
             comment.innerHTML = element.comment

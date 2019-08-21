@@ -11,6 +11,25 @@ body {
   margin: 0 auto;
 }
 
+/* Form styles */
+
+.form-group {
+  position: relative;
+  top: 25%;
+  margin: 0 auto;
+  width: 70%;
+  text-align: center;
+}
+
+.form-control {
+  border: 0;
+  outline: 0;
+  background: white;
+  border-bottom: 1px lightgrey solid;
+  display: block;
+  margin: 20px auto;
+}
+
 /* Menu styles */
 
 nav {
@@ -58,11 +77,11 @@ a:hover{
 }
 
 .table-row {
-  padding: 1em;
+  padding: 2em 0;
   border-bottom: 1px solid lightgray;
 }
 
-.table-row:hover > .edit-todo-menu {
+.table-row:hover > .todo-menu {
   visibility: visible;
 }
 
@@ -72,24 +91,39 @@ a:hover{
   cursor: pointer;
 }
 
-.edit-todo-menu {
+.todo-menu {
   visibility: hidden;
   color: lightgrey;
+  padding-left: 0.5em;
   float: right;
 }
 
-.edit-todo-menu:hover {
+.todo-menu:hover {
   color: #0c0c0c;
   cursor: pointer;
 }
 
 .todo-comment {
+  color: gray;
   padding-top: 2em;
   display: none;
 }
 
 .show {
   display: block;
+}
+
+.title {
+  position: relative;
+}
+
+.due-date {
+  font-size: 0.6em;
+  visibility: visible;
+  display: block;
+  padding: .5em;
+  position: absolute;
+  color: gray;
 }
 
 /* Button styles */
@@ -138,23 +172,4 @@ a:hover{
 .btn:hover {
   color: #000000;
   cursor: pointer;
-}
-
-/* Form styles */
-
-.form-group {
-  position: relative;
-  top: 25%;
-  margin: 0 auto;
-  width: 70%;
-  text-align: center;
-}
-
-.form-control {
-  border: 0;
-  outline: 0;
-  background: white;
-  border-bottom: 1px lightgrey solid;
-  display: block;
-  margin: 20px auto;
 }

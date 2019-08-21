@@ -19,7 +19,7 @@ document.querySelector("#close-add-form").addEventListener('click', renderAddFor
 // Add todo
 document.querySelector("#add").addEventListener('click', function(){
     event.preventDefault(); //Prevent the page from refreshing
-    let newTodo = todoFactory(document.forms['addTodo'].elements['title'].value, document.querySelector('#current-project').innerHTML, document.forms['addTodo'].elements['due-date'].value)
+    let newTodo = todoFactory(document.forms['addTodo'].elements['title'].value, document.querySelector('#current-project').innerHTML, document.forms['addTodo'].elements['due-date'].value, 'Add your comments here.')
     todoList.push(newTodo)
     render(todoList, document.querySelector('#current-project').innerHTML)
     renderAddForm()

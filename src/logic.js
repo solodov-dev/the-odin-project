@@ -1,7 +1,7 @@
 const todoFactory = (title, project, dueDate, comment) => {
     let done = false;
-
-    return {title, project, dueDate, comment}
+    let important = false;
+    return {title, project, dueDate, important, comment}
 }
 
 export {todoFactory,}
