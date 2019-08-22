@@ -117,6 +117,11 @@ a:hover{
   position: relative;
 }
 
+.done {
+  color: gray;
+  text-decoration: line-through;
+}
+
 .due-date {
   font-size: 0.6em;
   visibility: visible;

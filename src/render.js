@@ -16,23 +16,26 @@ const render = (todoList, project) => {
             row.dataset.index = index
 
             let checker = document.createElement('div')
-            checker.classList.add('todo-data', 'done')
+            checker.classList.add('todo-data', 'checkbox')
             if (element.done == true){
-                checker.innerHTML = '<input type="checkbox" name="done" checked>'
+                checker.innerHTML = '<input type="checkbox" checked>'
             }
             else {
-                checker.innerHTML = '<input type="checkbox" name="done">'
+                checker.innerHTML = '<input type="checkbox">'
             }
             row.appendChild(checker)
             
 
             let title = document.createElement('div')
             title.classList.add('todo-data', 'title')
+            if (element.done == true) {
+                title.classList.add('done')
+            }
             title.innerHTML = element.title
             
             let due = document.createElement('div')
             due.innerHTML = 'due: '+ element.dueDate
-            due.classList.add('todo-menu', 'due-date')
+            due.classList.add('due-date')
 
             title.appendChild(due)
             row.appendChild(title)

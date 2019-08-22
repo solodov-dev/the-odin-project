@@ -3,7 +3,7 @@ import {render, renderAddForm, renderAddProjectForm, renderNav, renderMenu} from
 
 let todoList = []
 let projects = ['inbox',]
-let defaultTodo = todoFactory('Example todo', projects[0], '19.08.2019', 'You can add your comments here.')
+let defaultTodo = todoFactory('Example todo', projects[0], '2019-08-19', 'You can add your comments here.')
 
 todoList.push(defaultTodo)
 renderNav(projects[0])
@@ -31,10 +31,20 @@ document.querySelector('#container').addEventListener('click', function(e){
         render(todoList, document.querySelector('#current-project').innerHTML)
     }
 })
-// Show comment
+// Show comment / toggle done / toggle important
 document.querySelector('.table').addEventListener('click', function(e){
     if (e.target.classList.contains('title')) {
         e.target.parentNode.querySelector('.todo-comment').classList.toggle('show')
+    }
+
+    if (e.target.parentNode.classList.contains('checkbox')) {
+        todoList[e.target.parentNode.parentNode.dataset.index].toggleDone()
+        e.target.parentNode.parentNode.querySelector('.title').classList.toggle('done')
+    }
+
+    if (e.target.classList.contains('important')) {
+        console.log(todoList);
+        todoList[e.target.parentNode.dataset.index].toggleImportant()
     }
 })
 
