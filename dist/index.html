@@ -10,8 +10,9 @@
 <body>
     <div id="add-todo-window" style="visibility: hidden">
         <form name="addTodo" class="form-group">
-            <input type="text" name="title" id="input-title" class="form-control" placeholder="Title">
-            <input type="date" name="due-date" id="input-due-date" class="form-control" placeholder="Due Date">
+            <input type="text" name="title" class="form-control" placeholder="Title">
+            <input type="date" name="due-date" class="form-control" placeholder="Due Date">
+            <textarea rows="5" cols="40" placeholder="Comments" name="comments" class="form-control comments"></textarea>
             <a id="add" class="form-control btn">Add</a>
             <a target="#" id="close-add-form" class="form-control btn">Cancel</a>
         </form>

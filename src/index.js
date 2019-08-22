@@ -19,33 +19,37 @@ document.querySelector("#close-add-form").addEventListener('click', renderAddFor
 // Add todo
 document.querySelector("#add").addEventListener('click', function(){
     event.preventDefault(); //Prevent the page from refreshing
-    let newTodo = todoFactory(document.forms['addTodo'].elements['title'].value, document.querySelector('#current-project').innerHTML, document.forms['addTodo'].elements['due-date'].value, 'Add your comments here.')
+    let newTodo = todoFactory(document.forms['addTodo'].elements['title'].value, 
+                            document.querySelector('#current-project').innerHTML, 
+                            document.forms['addTodo'].elements['due-date'].value, 
+                            document.forms['addTodo'].elements['comments'].value)
     todoList.push(newTodo)
     render(todoList, document.querySelector('#current-project').innerHTML)
     renderAddForm()
 })
-// Delete todo
-document.querySelector('#container').addEventListener('click', function(e){
-    if (e.target.classList.contains('delete')) {
-        todoList.splice(e.target.parentNode.dataset.index, 1)
-        render(todoList, document.querySelector('#current-project').innerHTML)
-    }
-})
-// Show comment / toggle done / toggle important
+
+// Event listeners for todos
 document.querySelector('.table').addEventListener('click', function(e){
+    // Toggle comment
     if (e.target.classList.contains('title')) {
         e.target.parentNode.querySelector('.todo-comment').classList.toggle('show')
     }
-
+    // Toggle done
     if (e.target.parentNode.classList.contains('checkbox')) {
         todoList[e.target.parentNode.parentNode.dataset.index].toggleDone()
         e.target.parentNode.parentNode.querySelector('.title').classList.toggle('done')
     }
-
-    if (e.target.classList.contains('important')) {
-        console.log(todoList);
+    // Toggle important
+    if (e.target.classList.contains('exclamation')) {
         todoList[e.target.parentNode.dataset.index].toggleImportant()
+        e.target.classList.toggle('important')
     }
+    // Delete todo
+    if (e.target.classList.contains('delete')) {
+        todoList.splice(e.target.parentNode.dataset.index, 1)
+        render(todoList, document.querySelector('#current-project').innerHTML)
+    }
+    // Edit todo
 })
 
 // Add project listeners

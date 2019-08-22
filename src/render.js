@@ -11,10 +11,12 @@ const render = (todoList, project) => {
     let index = 0
     todoList.forEach(element => {
         if (element.project == project){   
+            // Add row
             let row = document.createElement('div')
             row.classList.add('table-row')
             row.dataset.index = index
 
+            // Add checkbox
             let checker = document.createElement('div')
             checker.classList.add('todo-data', 'checkbox')
             if (element.done == true){
@@ -25,7 +27,16 @@ const render = (todoList, project) => {
             }
             row.appendChild(checker)
             
+            // Add important !
+            let important = document.createElement('div')
+            important.classList.add('todo-menu', 'exclamation')
+            important.innerHTML = '!'
+            if (element.important == true) {
+                important.classList.add('important')
+            }
+            row.appendChild(important)
 
+            // Add todo's title
             let title = document.createElement('div')
             title.classList.add('todo-data', 'title')
             if (element.done == true) {
@@ -33,6 +44,7 @@ const render = (todoList, project) => {
             }
             title.innerHTML = element.title
             
+            // Add due date
             let due = document.createElement('div')
             due.innerHTML = 'due: '+ element.dueDate
             due.classList.add('due-date')
@@ -40,16 +52,19 @@ const render = (todoList, project) => {
             title.appendChild(due)
             row.appendChild(title)
 
+            // Add delete option
             let del = document.createElement('div')
             del.innerHTML = 'delete'
-            del.classList.add('todo-menu', 'delete')
+            del.classList.add('todo-menu', 'todo-menu--floater', 'delete')
             row.appendChild(del)
-
+            
+            // Add edit option
             let edit = document.createElement('div')
             edit.innerHTML = 'edit'
-            edit.classList.add('todo-menu', 'edit')
+            edit.classList.add('todo-menu', 'todo-menu--floater', 'edit')
             row.appendChild(edit)
             
+            // Add comments section
             let comment = document.createElement('div')
             comment.innerHTML = element.comment
             comment.classList.add('todo-comment')
