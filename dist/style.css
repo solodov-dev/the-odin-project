@@ -6,9 +6,17 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#main {
-  width: 30%;
-  margin: 0 auto;
+.sidebar {
+  margin: 55px auto 0;
+  display: block;
+  width: 20%;
+  float: left;
+}
+
+.main {
+  display: inline-block;
+  width: 80%;
+  margin: 60px auto 0;
 }
 
 /* Form styles */
@@ -40,49 +48,42 @@ body {
 nav {
   color: #ffffff;
   background-color: #0c0c0c;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
   font-size: 25px;
   height: 30px;
   margin: 0;
   padding: .5em;
+  box-shadow: gray;
 }
 
 a:hover{
-  text-decoration: underline;
   cursor: pointer;
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  white-space: nowrap;
-  overflow: hidden;
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  z-index: 1;
-}
 
 .menu-item {
   display: block;
-  font-size: .7em;
   color: black;
   padding: 12px 16px;
   text-decoration: none;
+  transition: .1s ease-in-out;
 }
 
-.dropdown:hover .dropdown-content {display:block;}
-
+.menu-item:hover {
+  border-left: 5px solid #0c0c0c;
+}
 /* Table styles */
 
 .table {
   margin: 20px auto;
+  width: 40%;
 }
 
 .table-row {
-  padding: 2em 0;
+  padding: 1.5em 0;
   border-bottom: 1px solid lightgray;
 }
 
@@ -151,10 +152,7 @@ a:hover{
 .main-btn{
   display: block;
   margin: 0 auto;
-  width:60px;
-  height:60px;
-  border-radius:100%;
-  background:#ffffff;
+  width: 30px;
   border:none;
   outline:none;
   columns: #0c0c0c;
@@ -171,7 +169,7 @@ a:hover{
   -webkit-transform: rotate(45deg);
 }
 
-#add-todo-window, #add-project-window {
+#add-todo-window, #add-project-window , #edit-todo-window{
   position: absolute;
   top: 0;
   left: 0;

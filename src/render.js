@@ -103,24 +103,41 @@ const renderNav = (project) => {
 
 // Render projects menu
 const renderMenu = (projects) => {
-    let menu = document.querySelector('.dropdown-content')
+    let menu = document.querySelector('.sidebar')
+    
+    // Clean menu list before refreshing
     while (menu.firstChild) {
         menu.removeChild(menu.firstChild)
     }
+
+    let addProject = document.createElement('a')
+    addProject.innerHTML = '+ add project'
+    addProject.classList.add('menu-item', 'add-project')
+    menu.appendChild(addProject)
+    
     projects.forEach(project => {
         if (document.querySelector('#current-project').innerHTML == project) {
             return
         }
         let menuItem = document.createElement('a')
         menuItem.innerHTML = project
-        menuItem.classList.add('menu-item')
+        menuItem.classList.add('menu-item', 'menu-project')
         menu.appendChild(menuItem)
     })
 
-    let addProject = document.createElement('a')
-    addProject.innerHTML = '+ Add Project'
-    addProject.classList.add('menu-item', 'add-project')
-    menu.appendChild(addProject)
 }
 
-export {render, renderAddForm, renderAddProjectForm, renderNav, renderMenu}
+const renderEditForm = (todoList, index) => {
+    let editForm = document.querySelector('#edit-todo-window')
+    editForm.dataset.index = index
+    if (editForm.style.visibility == 'hidden') {
+        editForm.style.visibility = 'visible'
+        document.forms['editTodo'].elements['title'].value = todoList[index].title
+        document.forms['editTodo'].elements['due-date'].value = todoList[index].dueDate
+        document.forms['editTodo'].elements['comments'].value = todoList[index].comment
+    } else {
+        editForm.style.visibility = 'hidden'
+    }
+}
+
+export {render, renderAddForm, renderAddProjectForm, renderEditForm, renderNav, renderMenu}

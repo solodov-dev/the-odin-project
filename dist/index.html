@@ -14,24 +14,33 @@
             <input type="date" name="due-date" class="form-control" placeholder="Due Date">
             <textarea rows="5" cols="40" placeholder="Comments" name="comments" class="form-control comments"></textarea>
             <a id="add" class="form-control btn">Add</a>
-            <a target="#" id="close-add-form" class="form-control btn">Cancel</a>
+            <a id="close-add-form" class="form-control btn">Cancel</a>
+        </form>
+    </div>
+    <div id="edit-todo-window" style="visibility: hidden">
+        <form name="editTodo" class="form-group">
+            <input type="text" name="title" class="form-control" placeholder="Title">
+            <input type="date" name="due-date" class="form-control" placeholder="Due Date">
+            <textarea rows="5" cols="40" placeholder="Comments" name="comments" class="form-control comments"></textarea>
+            <a id="update" class="form-control btn">Update</a>
+            <a id="close-edit-form" class="form-control btn">Cancel</a>
         </form>
     </div>
     <div id="add-project-window" style="visibility: hidden">
         <form name="addProject" class="form-group">
-            <input type="text" name="project-title" id="project-title" class="form-control" placeholder="Project title">
+            <input type="text" name="project-title" class="form-control" placeholder="Project title">
             <a id="add-project" class="form-control btn">Add</a>
             <a target="#" id="close-project-form" class="form-control btn">Cancel</a>
         </form>
     </div>
     <nav>
-        <div class="dropdown">
-            DO / <a id="current-project"></a> &dtri;
-            <div class="dropdown-content"></div>
-        </div>
+        DO / <span id="current-project"></span>
     </nav>
-    <div id="main">
-        <button class="main-btn">+</button>
+    <div class="sidebar">
+            
+    </div>
+    <div class="main">
+        <a class="main-btn">+</a>
         <div class="table" id="container"></div>
     </div>
     <script src="main.js"></script>
