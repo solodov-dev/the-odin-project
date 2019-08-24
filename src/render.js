@@ -1,16 +1,25 @@
 // Main render function. Renders the todoList for a project
 const render = (todoList, project) => {
-  const container = document.querySelector('#container');
+  const container = document.querySelector('.table');
 
   // Clear the table
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
 
+  if (project !== 'all') {
+    const addBtn = document.createElement('a');
+    addBtn.classList.add('main-btn');
+    addBtn.innerHTML = '+';
+    container.appendChild(addBtn);
+  }
+
   // Add elements
   let index = 0;
   todoList.forEach((element) => {
-    if (element.project === project) {
+    const rowContainer = document.createElement('div');
+    rowContainer.classList.add('row-container');
+    if (element.project === project || project === 'all') {
       // Add row
       const row = document.createElement('div');
       row.classList.add('table-row');
@@ -28,8 +37,8 @@ const render = (todoList, project) => {
 
       // Add important !
       const important = document.createElement('div');
-      important.classList.add('todo-menu', 'exclamation');
-      important.innerHTML = '!';
+      important.classList.add('todo-menu', 'exclamation', 'material-icons');
+      important.innerHTML = 'assignment_late';
       if (element.important === true) {
         important.classList.add('important');
       }
@@ -51,25 +60,27 @@ const render = (todoList, project) => {
       title.appendChild(due);
       row.appendChild(title);
 
+      // Add edit option
+      const edit = document.createElement('div');
+      edit.innerHTML = 'mode_edit';
+      edit.classList.add('todo-menu', 'todo-menu--floater', 'edit', 'material-icons');
+      row.appendChild(edit);
+
       // Add delete option
       const del = document.createElement('div');
       del.innerHTML = 'delete';
-      del.classList.add('todo-menu', 'todo-menu--floater', 'delete');
+      del.classList.add('todo-menu', 'todo-menu--floater', 'delete', 'material-icons');
       row.appendChild(del);
 
-      // Add edit option
-      const edit = document.createElement('div');
-      edit.innerHTML = 'edit';
-      edit.classList.add('todo-menu', 'todo-menu--floater', 'edit');
-      row.appendChild(edit);
 
+      rowContainer.appendChild(row);
       // Add comments section
       const comment = document.createElement('div');
       comment.innerHTML = element.comment;
       comment.classList.add('todo-comment');
-      row.appendChild(comment);
+      rowContainer.appendChild(comment);
 
-      container.appendChild(row);
+      container.appendChild(rowContainer);
     }
     index += 1;
   });
@@ -97,7 +108,17 @@ const renderAddProjectForm = () => {
 
 // Render navigation header
 const renderNav = (project) => {
-  document.querySelector('#current-project').innerHTML = project;
+  const currentProject = document.querySelector('#current-project');
+  currentProject.innerHTML = project;
+
+  const deleteProject = document.querySelector('#delete-project');
+
+  if (project !== '* show all') {
+    deleteProject.innerHTML = 'delete';
+    deleteProject.classList.add('material-icons');
+  } else {
+    deleteProject.innerHTML = '';
+  }
 };
 
 // Render projects menu
@@ -109,15 +130,17 @@ const renderMenu = (projects) => {
     menu.removeChild(menu.firstChild);
   }
 
+  const allProjects = document.createElement('a');
+  allProjects.innerHTML = '* show all';
+  allProjects.classList.add('show-all');
+  menu.appendChild(allProjects);
+
   const addProject = document.createElement('a');
   addProject.innerHTML = '+ add project';
   addProject.classList.add('menu-item', 'add-project');
   menu.appendChild(addProject);
 
   projects.forEach((project) => {
-    if (document.querySelector('#current-project').innerHTML === project) {
-      return;
-    }
     const menuItem = document.createElement('a');
     menuItem.innerHTML = project;
     menuItem.classList.add('menu-item', 'menu-project');

@@ -24,8 +24,6 @@ renderMenu(projects);
 
 // Add todo listeners
 //
-// Open add-todo form
-document.querySelector('.main-btn').addEventListener('click', renderAddForm);
 // Close add-todo form
 document
   .querySelector('#close-add-form')
@@ -58,7 +56,7 @@ document.querySelector('#update').addEventListener('click', (e) => {
 document.querySelector('.table').addEventListener('click', (e) => {
   // Toggle comment
   if (e.target.classList.contains('title')) {
-    e.target.parentNode.querySelector('.todo-comment').classList.toggle('show');
+    e.target.parentNode.parentNode.querySelector('.todo-comment').classList.toggle('show');
   }
   // Toggle done
   if (e.target.parentNode.classList.contains('checkbox')) {
@@ -81,6 +79,10 @@ document.querySelector('.table').addEventListener('click', (e) => {
   if (e.target.classList.contains('edit')) {
     renderEditForm(todoList, e.target.parentNode.dataset.index);
   }
+  // Open add todo form
+  if (e.target.classList.contains('main-btn')) {
+    renderAddForm();
+  }
 });
 // Close edit todo form
 document
@@ -97,9 +99,18 @@ document.querySelector('.sidebar').addEventListener('click', (e) => {
   }
 
   if (e.target.classList.contains('menu-item')) {
+    if (e.target.parentNode.classList.contains('mobile')) {
+      e.target.parentNode.classList.toggle('mobile');
+    }
     renderNav(e.target.innerHTML);
     renderMenu(projects);
     render(todoList, document.querySelector('#current-project').innerHTML);
+  }
+
+  if (e.target.classList.contains('show-all')) {
+    renderNav(e.target.innerHTML);
+    renderMenu(projects);
+    render(todoList, 'all');
   }
 });
 // Close add project form
@@ -116,4 +127,33 @@ document.querySelector('#add-project').addEventListener('click', (e) => {
   renderMenu(projects);
   render(todoList, document.querySelector('#current-project').innerHTML);
   renderAddProjectForm();
+  if (document.querySelector('.mobile')) {
+    document.querySelector('.mobile').classList.toggle('mobile');
+  }
+});
+// Delete project
+document.querySelector('#delete-project').addEventListener('click', () => {
+  if (window.confirm('You will delete this project and all TODOs in it!')) {
+    const currentProject = document.querySelector('#current-project');
+    // Delete all todos
+    projects.splice(projects.indexOf(currentProject.innerHTML), 1);
+    renderMenu(projects);
+    for (let i = 0; i < todoList.length; i += 1) {
+      if (todoList[i].project === currentProject.innerHTML) {
+        todoList.splice(i, 1);
+        i -= 1;
+      }
+    }
+    if (projects.length > 0) {
+      renderNav(projects[projects.length - 1]);
+      render(todoList, document.querySelector('#current-project').innerHTML);
+    } else {
+      render(todoList, 'all');
+      renderNav('* show all');
+    }
+  }
+});
+// Menu animaitons
+document.querySelector('.toggle-menu').addEventListener('click', () => {
+  document.querySelector('.sidebar').classList.toggle('mobile');
 });

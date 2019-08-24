@@ -7,8 +7,9 @@ body {
 }
 
 .sidebar {
-  margin: 55px auto 0;
   display: block;
+  background-color: white;
+  margin: 55px auto 0;
   width: 20%;
   float: left;
 }
@@ -63,8 +64,21 @@ a:hover{
   cursor: pointer;
 }
 
+.toggle-menu {
+  margin: 0 1em;
+  float: right;
+  display: none;
+}
 
-.menu-item {
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 6px 0;
+  transition: .4s ease-in-out;
+}
+
+.menu-item, .show-all {
   display: block;
   color: black;
   padding: 12px 16px;
@@ -72,7 +86,7 @@ a:hover{
   transition: .1s ease-in-out;
 }
 
-.menu-item:hover {
+.menu-item:hover, .show-all:hover{
   border-left: 5px solid #0c0c0c;
 }
 /* Table styles */
@@ -83,17 +97,24 @@ a:hover{
 }
 
 .table-row {
+  display: flex;
+  justify-content: space-between;
   padding: 1.5em 0;
-  border-bottom: 1px solid lightgray;
 }
 
 .table-row:hover > .todo-menu {
   visibility: visible;
 }
 
+.row-container {
+  border-bottom: 1px solid lightgray;
+}
+
 .todo-data {
   display: inline-block;
+  margin: auto 0;
   cursor: pointer;
+  padding-bottom: 1em;
 }
 
 .todo-menu {
@@ -101,6 +122,10 @@ a:hover{
   color: lightgrey;
   padding: 0 0.5em;
   display: inline-block;
+}
+
+.material-icons {
+  font-size: 20px;
 }
 
 .todo-menu--floater {
@@ -114,7 +139,6 @@ a:hover{
 
 .todo-comment {
   color: gray;
-  padding-top: 2em;
   display: none;
 }
 
@@ -123,6 +147,7 @@ a:hover{
 }
 
 .title {
+  flex: 2 0 0;
   position: relative;
 }
 
@@ -190,4 +215,47 @@ a:hover{
 .btn:hover {
   color: #000000;
   cursor: pointer;
+}
+
+/* Mobile */
+
+@media only screen and (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    background: #0c0c0c;
+    min-height: 100vh;
+    text-align: center;
+    overflow-x: hidden;
+    width: 0;
+    z-index: 5;
+    transition: width .3s ease-in-out;
+  }
+
+  .mobile {
+    width: 300px;
+  }
+
+  .menu-item {
+    color: white;
+  }
+
+  .menu-item:hover {
+    background: white;
+    color: #0c0c0c;
+    border: none;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  .table {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .toggle-menu {
+    display: inline;
+    cursor: pointer;
+  }
 }
