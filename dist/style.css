@@ -235,11 +235,11 @@ a:hover{
     width: 300px;
   }
 
-  .menu-item {
+  .menu-item, .show-all {
     color: white;
   }
 
-  .menu-item:hover {
+  .menu-item:hover, .show-all:hover {
     background: white;
     color: #0c0c0c;
     border: none;
