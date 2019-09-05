@@ -72,7 +72,7 @@ body {
   padding: 0;
   z-index: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background: url('./assets/background.jpeg')
 }
 
