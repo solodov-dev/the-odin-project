@@ -2,7 +2,7 @@
   <div id="app">
     <div id="map"></div>
     <img class="drops" src="./assets/logo.svg">
-    <input class="search-input" type="text" v-model="location" :class="{'search-input-hidden':infoReady}" placeholder="Enter your adress">
+    <input class="search-input" type="text" v-on:keyup.enter="search()" v-model="location" :class="{'search-input-hidden':infoReady}" placeholder="Enter your location">
     <div class="info wrapper" :class="{'wrapper-show': !infoReady}">
       <p class="info temperature">{{ temperature }} &deg;C</p>
       <p class="info location">{{ location }}</p>
