@@ -101,7 +101,7 @@ body {
 }
 
 .search-btn-move {
-  transform: translateY(600%)
+  transform: translateY(600%);
 }
 
 .search-btn:hover {
