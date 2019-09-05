@@ -64,6 +64,7 @@ body {
 }
 
 #app {
+  position: relative;
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -82,7 +83,7 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  margin: auto;
+  margin: 0 auto;
   z-index: 2;
 }
 
