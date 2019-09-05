@@ -72,8 +72,9 @@ body {
   padding: 0;
   z-index: 0;
   width: 100vw;
-  height: 100%;
-  background: url('./assets/background.jpeg')
+  height: 100vh;
+  background: url('./assets/background.jpeg');
+  background-repeat: no-repeat;
 }
 
 .search-input, .search-btn, .drops {
