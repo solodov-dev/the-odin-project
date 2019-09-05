@@ -4,11 +4,10 @@
     <img class="drops" src="./assets/logo.svg">
     <input class="search-input" type="text" v-model="location" :class="{'search-input-hidden':infoReady}" placeholder="Enter your adress">
     <div class="info wrapper" :class="{'wrapper-show': !infoReady}">
-      <p class="info temperature">{{ temperature }}&deg;</p>
-      <img :src="icon" class="info icon">
+      <p class="info temperature">{{ temperature }} &deg;C</p>
       <p class="info location">{{ location }}</p>
       <img class="info gif" :src="gifLink" alt="">
-      <p class="info weather">{{ conditions }}</p>
+      <p class="info weater">{{ conditions }}</p>
     </div>
     <button class="search-btn" @click=search() :class="{ 'search-btn-move': infoReady }">Search</button>
   </div>
@@ -22,7 +21,6 @@ export default {
       location: '',
       temperature: null,
       conditions: null,
-      icon: null,
       gifLink: null,
       infoReady: false,
     }
@@ -37,9 +35,9 @@ export default {
           this.conditions = weatherData.weather[0].description;
           this.location = weatherData.name + ', ' + weatherData.sys.country;
           this.temperature = Math.round(weatherData.main.temp);
-          this.icon = `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
         } catch(err) {
-          this.location = 'No such location';
+          this.location = '';
+          document.querySelector('.search-input').placeholder = 'No such location';
           return;
         }
       }
@@ -147,20 +145,18 @@ body {
 }
 
 .temperature {
-  font: 5em bold;
+  font: 4em Arial bold;
   padding: .7em 0 0;
   margin: 0;
 }
 
-.icon {
-  height: 5em;
-}
-
-.temperature, .icon {
-  display: inline-block;
+.weather {
+  margin-top: 20px;
 }
 
 .gif {
+  margin: 0 auto;
+  display: block;
   height: 30vh;
   border-radius: 20px;
   max-width: 90%;
