@@ -1,0 +1,27 @@
+{
+  "name": "javascritp-tdd",
+  "version": "1.0.0",
+  "description": "Theodin project testing js",
+  "main": "capitalize.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/solodov-dev/top-js-tdd.git"
+  },
+  "keywords": [
+    "js",
+    "tdd"
+  ],
+  "author": "Andrey Solodov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/solodov-dev/top-js-tdd/issues"
+  },
+  "homepage": "https://github.com/solodov-dev/top-js-tdd#readme",
+  "devDependencies": {
+    "eslint": "^6.3.0",
+    "jest": "^24.9.0"
+  }
+}
