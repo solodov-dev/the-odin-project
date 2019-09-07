@@ -18,5 +18,4 @@ function caesar(s, key) {
     return s.split('').map(char => shift(char, key)).join('');
 }
 
-module.exports.shift = shift;
-module.exports.caesar = caesar;
+module.exports = caesar;
