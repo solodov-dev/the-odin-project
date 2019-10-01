@@ -1,0 +1,187 @@
+* {
+  box-sizing: content-box;
+}
+
+body {
+  background-color: #eceef1;
+  font-family: AvenirNext, Avenir, "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  color: #505050;
+  margin: 0;
+}
+
+header {
+  height: 60px;
+}
+
+.navigation-container {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  padding: 5px;
+}
+
+.navigation-column {
+  font-size: 0.8em;
+  padding: 10px;
+  float: left;
+}
+
+.btn-sign-in,
+.btn-form-create {
+  background-color: #0077c5;
+  border: 1px solid gray;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-weight: normal;
+}
+
+a {
+  color: #0077c5;
+}
+
+.main-content {
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.logo {
+  height: 35px;
+  width: 118px;
+  background-image: url("https://plugin.intuitcdn.net/identity-authn-core-ui/1.0.0-dev.137/images/ecosystem_logos_new.png");
+}
+
+.services {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.icon {
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  list-style: none;
+  margin-right: 7px;
+}
+
+.mint-icon {
+  background: url("https://plugin.intuitcdn.net/identity-authn-core-ui/1.0.0-dev.137/images/mint-favicon.svg")
+    no-repeat;
+}
+
+.mint-icon-text {
+  background: url("https://plugin.intuitcdn.net/identity-authn-core-ui/1.0.0-dev.137/images/mint-text.svg")
+    no-repeat;
+  width: 37px;
+  height: 20px;
+}
+
+.quickbooks-icon {
+  background: url("https://plugin.intuitcdn.net/identity-authn-core-ui/1.0.0-dev.137/images/quickbooks-favicon@2x.svg")
+    no-repeat;
+}
+
+.quickbooks-icon-text {
+  background: url("https://plugin.intuitcdn.net/identity-authn-core-ui/1.0.0-dev.137/images/quick-books-text.svg")
+    no-repeat;
+  width: 98px;
+  height: 22px;
+}
+
+.turbotax-icon {
+  background: url("https://plugin.intuitcdn.net/identity-authn-core-ui/1.0.0-dev.137/images/tt-favicon@2x.svg")
+    no-repeat;
+}
+
+.turbotax-icon-text {
+  background: url("https://plugin.intuitcdn.net/identity-authn-core-ui/1.0.0-dev.137/images/turbo-tax-text.svg")
+    no-repeat;
+  width: 74px;
+  height: 22px;
+}
+
+form {
+  background-color: #fff;
+  border: 1px solid #c7c7c7;
+  width: 30%;
+}
+
+h1,
+h2 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: normal;
+  margin: 40px auto 20px;
+}
+
+h2 {
+  font-size: 16px;
+  margin: 0;
+}
+
+h3 {
+  font-size: 12px;
+  margin: 0 auto 40px;
+  color: #0077c5;
+  font-weight: normal;
+  text-align: center;
+}
+
+.form-item {
+  display: block;
+  margin: 0 auto 2em;
+  width: 90%;
+  border-radius: 5px;
+  box-shadow: none;
+  border: 1px solid lightgray;
+  height: 2em;
+  padding: 3px;
+}
+
+.form-label {
+  margin: 0 auto;
+  border: none;
+  padding: 0;
+}
+
+.form-info {
+  font-style: italic;
+  font-size: 12px;
+  text-align: center;
+  width: 70%;
+  margin: 30px auto 40px;
+}
+
+.form-footer {
+  background-color: #eceef1;
+  font-size: 11px;
+  padding: 20px;
+  text-align: center;
+}
+
+footer {
+    margin-bottom: 20px;
+}
+
+.footer-menu {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 11px;
+}
+
+.footer-menu-item {
+    display: inline;
+    margin: 11px;
+}
+
+.footer-text {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 11px;
+}
