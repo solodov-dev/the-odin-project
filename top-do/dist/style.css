@@ -1,0 +1,261 @@
+/* General style */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.sidebar {
+  display: block;
+  background-color: white;
+  margin: 55px auto 0;
+  width: 20%;
+  float: left;
+}
+
+.main {
+  display: inline-block;
+  width: 80%;
+  margin: 60px auto 0;
+}
+
+/* Form styles */
+
+.form-group {
+  position: relative;
+  top: 25%;
+  margin: 0 auto;
+  width: 70%;
+  text-align: center;
+}
+
+.form-control {
+  border: 0;
+  outline: 0;
+  background: white;
+  border-bottom: 1px lightgrey solid;
+  display: block;
+  margin: 20px auto;
+}
+
+.comments {
+  border: 1px lightgray solid;
+  resize: none;
+}
+
+/* Menu styles */
+
+nav {
+  color: #ffffff;
+  background-color: #0c0c0c;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  font-size: 25px;
+  height: 30px;
+  margin: 0;
+  padding: .5em;
+  box-shadow: gray;
+}
+
+a:hover{
+  cursor: pointer;
+}
+
+.toggle-menu {
+  margin: 0 1em;
+  float: right;
+  display: none;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 6px 0;
+  transition: .4s ease-in-out;
+}
+
+.menu-item, .show-all {
+  display: block;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  transition: .1s ease-in-out;
+}
+
+.menu-item:hover, .show-all:hover{
+  border-left: 5px solid #0c0c0c;
+}
+/* Table styles */
+
+.table {
+  margin: 20px auto;
+  width: 40%;
+}
+
+.table-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5em 0;
+}
+
+.table-row:hover > .todo-menu {
+  visibility: visible;
+}
+
+.row-container {
+  border-bottom: 1px solid lightgray;
+}
+
+.todo-data {
+  display: inline-block;
+  margin: auto 0;
+  cursor: pointer;
+  padding-bottom: 1em;
+}
+
+.todo-menu {
+  visibility: hidden;
+  color: lightgrey;
+  padding: 0 0.5em;
+  display: inline-block;
+}
+
+.material-icons {
+  font-size: 20px;
+}
+
+.todo-menu--floater {
+  float: right;
+}
+
+.todo-menu:hover {
+  color: #0c0c0c;
+  cursor: pointer;
+}
+
+.todo-comment {
+  color: gray;
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.title {
+  flex: 2 0 0;
+  position: relative;
+}
+
+.done {
+  color: gray;
+  text-decoration: line-through;
+}
+
+.important {
+  visibility: visible;
+  font-weight: bold;
+  color: #0c0c0c;
+}
+
+.due-date {
+  font-size: 0.6em;
+  visibility: visible;
+  display: block;
+  padding: .5em;
+  position: absolute;
+  color: gray;
+  white-space: nowrap;
+}
+
+/* Button styles */
+
+.main-btn{
+  display: block;
+  margin: 0 auto;
+  width: 30px;
+  border:none;
+  outline:none;
+  columns: #0c0c0c;
+  font-size:36px;
+  transition:.3s;  
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.main-btn:hover {
+  cursor: pointer;
+  transform:scale(1.1);
+  transform:rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+#add-todo-window, #add-project-window , #edit-todo-window{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  z-index: 9;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #ffffff;
+  padding: 0.3em 0.5em;
+  color: #0c0c0c;
+  border: none;
+}
+
+.btn:hover {
+  color: #000000;
+  cursor: pointer;
+}
+
+/* Mobile */
+
+@media only screen and (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    background: #0c0c0c;
+    min-height: 100vh;
+    text-align: center;
+    overflow-x: hidden;
+    width: 0;
+    z-index: 5;
+    transition: width .3s ease-in-out;
+  }
+
+  .mobile {
+    width: 300px;
+  }
+
+  .menu-item, .show-all {
+    color: white;
+  }
+
+  .menu-item:hover, .show-all:hover {
+    background: white;
+    color: #0c0c0c;
+    border: none;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  .table {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .toggle-menu {
+    display: inline;
+    cursor: pointer;
+  }
+}
