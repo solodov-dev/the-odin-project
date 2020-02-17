@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" async></script>
+    <title>TicTacToe</title>
+</head>
+
+<body>
+    <div id="main">
+        <h1>PlayerX vs Player0</h1>
+        <div class="menu" id="new-game">
+            <p>o Tic Tac Toe ×</p>
+            <button onclick="displayController.showTypeMenu()">New Game</button>
+        </div>
+        <div class="menu hidden" id="game-type">
+            <button id="one-player" onclick="displayController.showPlayersMenu(1)">One Player</button>
+            <button id="two-players" onclick="displayController.showPlayersMenu(2)">Two Players</button>
+        </div>
+        <div class="menu hidden" id="player-name-input"></div>
+        <div class="menu hidden" id="two-player-name-input">
+            <input type="text" placeholder="PlayerX name">
+            <input type="text" placeholder="PlayerO name">
+            <button onclick="displayController.startNewGame()">Start</button>
+        </div>
+        <div class="menu hidden" id="winner">
+            <p>Game finished!</p>
+            <button onclick="displayController.showTypeMenu()">Start a new game.</button>
+        </div>
+        <div id="container"></div>
+    </div>
+</body>
+
+</html>
