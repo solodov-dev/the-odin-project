@@ -1,0 +1,129 @@
+* {
+    box-sizing: content-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #5e4cd3;
+    color: white;
+}
+
+#container {
+    margin: auto;
+    width: 100%;
+}
+
+div {
+    text-align: center;
+}
+
+form {
+    display: none;
+    text-align: center;
+    background-color: white;
+    border: 2px solid #5e4cd3;
+    position: fixed;
+    width: 300px;
+    height: 400px;
+    bottom: 70px;
+    right: 70px;
+    z-index: 9;
+    transition: .2s;
+}
+
+select {
+    display: inline-block;
+    margin: 1em;
+    width: 230px;
+    background-color: white;
+    padding: 7px;
+    width: 190px;
+    border: 1px solid gray;
+    border-top-left-radius: 5%;
+    border-bottom-left-radius: 5%;
+}
+
+input {
+    margin: 1em;
+}
+
+#addform {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: #5e4cd3;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    line-height: 0;
+    outline: none;
+    border: none;
+    z-index: 10;
+    transition: .3s;
+}
+
+#addform:hover {
+    transform: scale(1.3);
+}
+
+#addform::-moz-focus-inner{
+    border: 0;
+}
+
+.row {
+    border: 1px solid lightgray;
+    padding: .2em;
+    border-radius: 10px;
+    text-align: left;
+    margin: 2px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+}
+
+th {
+    text-align: center;
+    border-bottom: 1px white solid; 
+    color: white;
+    background-color: #5e4cd3;
+}
+
+td {
+    border-bottom: 1px #5e4cd3 solid;
+}
+.remove {
+    border: none;
+    background-color: #f14640;
+    height: 20px;
+    width: 20px;
+    padding: 10px 10px;
+    border-radius: 50%;
+    color: white;
+}
+
+.remove:hover{
+    background-color: #ec6964;
+}
+
+.read, form button {
+    border: 1px solid #5e4cd3;
+    background-color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin: .5em 1em;
+}
+
+.read:hover, form button:hover {
+    background-color: #5e4cd3;
+    color: white;
+}
+
+.read::-moz-focus-inner {
+    border: none;
+}

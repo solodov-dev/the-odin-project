@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" async></script>
+    <title>Library</title>
+</head>
+<body>
+    <form action="javascript:newBook();">
+        <h1>Add a book</h1>
+        <input type="text" placeholder="Title" pattern="[A-Za-z' '0-9]+" id="title" required>
+        <input type="text" placeholder="Author" pattern="[A-Za-z' ']+" id="author" required>
+        <input type="text" placeholder="Pages" pattern="[1-9][0-9]{0,2}" id="pages" required>
+        <select>
+            <option value="read">Read</option>
+            <option value="not read">Not read</option>
+        </select>
+        <button>Add</button>
+    </form>
+    <h1>My Library</h1>
+    <table id="container"></table>
+    <button type="button" id="addform" onclick="showForm()">+</button>
+</body>
+</html>
