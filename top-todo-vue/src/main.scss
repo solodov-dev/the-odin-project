@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;    
+}
+
+#app {
+    width: 40%;
+    margin: 60px auto 0;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+a {
+    text-decoration: none;
+    color: #42b983;
+}
+
+.todo-list {
+    text-align: left;
+    background: #dbdada;
+    margin: 2px auto;
+    padding: 5px;
+    border-left: 3px solid #42b983;
+}
+
+.title {
+    font-size: 1em;
+}
+
+.due-date {
+    color: #797979;
+    font-size: .8em;
+}
+
+.delete {
+    float: right;
+}
+
+.form {
+    display: flex;
+    width: 100%;
+    padding: 5px;
+    background-color: #dbdada;
+    justify-content: space-between;
+    align-content: center;
+    border-left: 3px solid #42b983;
+}
+
+.form-element {
+    background: none;
+    border: none;
+}
+
+.form-submit-btn {
+    color: #42b983;
+    padding: 0;
+    margin: 0;
+}
+
+@media only screen and (max-width: 800px) {
+    #app {
+        width: 100%;
+    }
+}
